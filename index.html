@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Autoload Clothing Template Generator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+    <div class="fixed-top jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Autoload Clothing Template Generator</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid row" style="margin-top:250px">
+        <form class="container col-md-4 col">
+            <h4 class="bg-light">Basic Information</h4>
+            <div class="form-group">
+                <label for="characterName" aria-label="12 characters or fewer">Character name</label>
+                <input type="text" id="characterName" placeholder="Foo"
+                    class="form-control bg-dark text-white text-monospace">
+            </div>
+            <div class="form-group">
+                <label for="characterGender">Character gender</label>
+                <select class="form-control bg-dark text-white text-monospace small" id="unequipColour">
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="itemCategory">Item category</label>
+                <select class="form-control bg-dark text-white text-monospace small" id="itemCategory">
+                    <option value="scabbard">scabbard (scabbard, weapon belt, etc)</option>
+                    <option value="pockets">clothing item with pockets (small capacity)</option>
+                    <option value="spam">clothing item with spam command</option>
+                </select>
+            </div>
+            <h4 class="bg-light">Short Information</h4>
+            <div class="form-group">
+                <label for="itemShort">Item short description<br /><small>40 characters or fewer</small></label>
+                <input type="text" id="itemShort" placeholder="Holy Hand Grenade"
+                    class="form-control bg-dark text-white text-monospace">
+            </div>
+            <div class="form-group">
+                <label for="itemColour">Item colour</label>
+                <select class="form-control bg-dark text-white text-monospace small" id="itemColour">
+                    <option value="red">red</option>
+                    <option value="orange">orange</option>
+                    <option value="green">green</option>
+                    <option value="blue">blue</option>
+                    <option value="cyan">cyan</option>
+                    <option value="magenta">magenta</option>
+                    <option value="white">white</option>
+
+                    <option value="boldRed">bold red</option>
+                    <option value="yellow">yellow</option>
+                    <option value="boldGreen">bold green</option>
+                    <option value="boldBlue">bold blue</option>
+                    <option value="boldCyan">bold cyan</option>
+                    <option value="boldMagenta">bold magenta</option>
+                    <option value="boldBlack">bold black</option>
+                    <option value="boldWhite">bold white</option>
+                </select>
+            </div>
+            <h4 class="bg-light">Long Information</h4>
+            <div class="form-group">
+                <label for="itemLong">Long description<br /><small>800 characters or fewer, including
+                        spaces</small></label>
+                <textarea rows="10" class="form-control bg-dark text-white text-monospace small"
+                    id="itemLong"></textarea>
+            </div>
+            <h4 class="bg-light">Messages</h4>
+            <div class="form-group">
+                <label for="equipMessage">Equip message<br /><small>250 characters or fewer, including
+                        spaces</small></label>
+                <textarea rows="3" class="form-control bg-dark text-white text-monospace small"
+                    id="equipMessage"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="equipColour">Equip colour</label>
+                <select class="form-control bg-dark text-white text-monospace small" id="equipColour">
+                    <option value="red">red</option>
+                    <option value="orange">orange</option>
+                    <option value="green">green</option>
+                    <option value="blue">blue</option>
+                    <option value="cyan">cyan</option>
+                    <option value="magenta">magenta</option>
+                    <option value="white">white</option>
+
+                    <option value="boldRed">bold red</option>
+                    <option value="yellow">yellow</option>
+                    <option value="boldGreen">bold green</option>
+                    <option value="boldBlue">bold blue</option>
+                    <option value="boldCyan">bold cyan</option>
+                    <option value="boldMagenta">bold magenta</option>
+                    <option value="boldBlack">bold black</option>
+                    <option value="boldWhite">bold white</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="equipMessage">Equip message<br /><small>250 characters or fewer, including
+                        spaces</small></label>
+                <textarea rows="3" class="form-control bg-dark text-white text-monospace small"
+                    id="equipMessage"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="unequipColour">Equip colour</label>
+                <select class="form-control bg-dark text-white text-monospace small" id="unequipColour">
+                    <option value="red">red</option>
+                    <option value="orange">orange</option>
+                    <option value="green">green</option>
+                    <option value="blue">blue</option>
+                    <option value="cyan">cyan</option>
+                    <option value="magenta">magenta</option>
+                    <option value="white">white</option>
+
+                    <option value="boldRed">bold red</option>
+                    <option value="yellow">yellow</option>
+                    <option value="boldGreen">bold green</option>
+                    <option value="boldBlue">bold blue</option>
+                    <option value="boldCyan">bold cyan</option>
+                    <option value="boldMagenta">bold magenta</option>
+                    <option value="boldBlack">bold black</option>
+                    <option value="boldWhite">bold white</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="spamCommand">Spam command</label>
+                <input type="text" id="spamCommand" placeholder="toss grenade"
+                    class="form-control bg-dark text-white text-monospace">
+            </div>
+            <div class="form-group">
+                <label for="unequipMessage">Spam message<br /><small>320 characters or fewer, including
+                        spaces</small></label>
+                <textarea rows="4" class="form-control bg-dark text-white text-monospace small"
+                    id="unequipMessage"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="spamColour">Spam colour</label>
+                <select class="form-control bg-dark text-white text-monospace small" id="spamColour">
+                    <option value="red">red</option>
+                    <option value="orange">orange</option>
+                    <option value="green">green</option>
+                    <option value="blue">blue</option>
+                    <option value="cyan">cyan</option>
+                    <option value="magenta">magenta</option>
+                    <option value="white">white</option>
+
+                    <option value="boldRed">bold red</option>
+                    <option value="yellow">yellow</option>
+                    <option value="boldGreen">bold green</option>
+                    <option value="boldBlue">bold blue</option>
+                    <option value="boldCyan">bold cyan</option>
+                    <option value="boldMagenta">bold magenta</option>
+                    <option value="boldBlack">bold black</option>
+                    <option value="boldWhite">bold white</option>
+                </select>
+            </div>
+        </form>
+        <div class="container col-md-7 bg-dark text-white col text-monospace small shadow p-4 mb-4 h-50 sticky-top">
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+            123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-
+        </div>
+
+    </div>
+</body>
+
+</html>
