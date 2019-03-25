@@ -29,9 +29,8 @@
                 <div class="form-group">
                     <label for="characterGender">Character gender</label>
                     <select class="form-control bg-dark text-white text-monospace small" id="characterGender" ng-model="item.character.gender">
-                        <option disabled selected value>--- Select a Gender --</option>
-                        <option value="male">male</option>
-                        <option value="female">female</option>
+                        <option disabled selected value>--- Select a Gender ---</option>
+                        <option ng-repeat="g in genders" value="{{g.gender}}">{{g.text}}</option>
                     </select>
                 </div>
             </div>
@@ -42,10 +41,8 @@
                 <div class="form-group">
                     <label for="itemCategory">Item category</label>
                     <select class="form-control bg-dark text-white text-monospace small" id="itemCategory" ng-model="item.category">
-                        <option disabled selected value>--- Select a Category --</option>
-                        <option value="scabbard">scabbard (scabbard, weapon belt, etc)</option>
-                        <option value="pockets">clothing item with pockets (small capacity)</option>
-                        <option value="spam">clothing item with spam command</option>
+                        <option disabled selected value>--- Select a Category ---</option>
+                        <option ng-repeat="c in categories" value="{{c.category}}">{{c.text}}</option>
                     </select>
                 </div>
             </div>
@@ -71,23 +68,8 @@
                 <div class="form-group">
                     <label for="itemColour">Item colour</label>
                     <select class="form-control bg-dark text-white text-monospace small" id="itemColour" ng-model="item.short.colour">
-                        <option disabled selected value>--- Select a Colour --</option>
-                        <option value="red">red</option>
-                        <option value="orange">orange</option>
-                        <option value="green">green</option>
-                        <option value="blue">blue</option>
-                        <option value="cyan">cyan</option>
-                        <option value="magenta">magenta</option>
-                        <option value="white">white</option>
-
-                        <option value="boldRed">bold red</option>
-                        <option value="yellow">yellow</option>
-                        <option value="boldGreen">bold green</option>
-                        <option value="boldBlue">bold blue</option>
-                        <option value="boldCyan">bold cyan</option>
-                        <option value="boldMagenta">bold magenta</option>
-                        <option value="boldBlack">bold black</option>
-                        <option value="boldWhite">bold white</option>
+                        <option disabled selected value>--- Select a Colour ---</option>
+                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
                     </select>
                 </div>
             </div>
@@ -103,7 +85,7 @@
                 </div>
             </div>
             <div class="bg-primary rounded-top text-white p-1 mt-3">
-                <h4>Messages</h4>
+                <h4>Equip Messages</h4>
             </div>
             <div class="p-2 bg-light border border-primary rounded-bottom">
                 <div class="form-group">
@@ -115,23 +97,8 @@
                 <div class="form-group">
                     <label for="equipColour">Equip colour</label>
                     <select class="form-control bg-dark text-white text-monospace small" id="equipColour" ng-model="item.messages.equip.colour">
-                        <option disabled selected value>--- Select a Colour --</option>
-                        <option value="red">red</option>
-                        <option value="orange">orange</option>
-                        <option value="green">green</option>
-                        <option value="blue">blue</option>
-                        <option value="cyan">cyan</option>
-                        <option value="magenta">magenta</option>
-                        <option value="white">white</option>
-
-                        <option value="boldRed">bold red</option>
-                        <option value="yellow">yellow</option>
-                        <option value="boldGreen">bold green</option>
-                        <option value="boldBlue">bold blue</option>
-                        <option value="boldCyan">bold cyan</option>
-                        <option value="boldMagenta">bold magenta</option>
-                        <option value="boldBlack">bold black</option>
-                        <option value="boldWhite">bold white</option>
+                        <option disabled selected value>--- Select a Colour ---</option>
+                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -143,23 +110,8 @@
                 <div class="form-group">
                     <label for="unequipColour">Equip colour</label>
                     <select class="form-control bg-dark text-white text-monospace small" id="unequipColour" ng-model="item.messages.unequip.colour">
-                        <option disabled selected value>--- Select a Colour --</option>
-                        <option value="red">red</option>
-                        <option value="orange">orange</option>
-                        <option value="green">green</option>
-                        <option value="blue">blue</option>
-                        <option value="cyan">cyan</option>
-                        <option value="magenta">magenta</option>
-                        <option value="white">white</option>
-
-                        <option value="boldRed">bold red</option>
-                        <option value="yellow">yellow</option>
-                        <option value="boldGreen">bold green</option>
-                        <option value="boldBlue">bold blue</option>
-                        <option value="boldCyan">bold cyan</option>
-                        <option value="boldMagenta">bold magenta</option>
-                        <option value="boldBlack">bold black</option>
-                        <option value="boldWhite">bold white</option>
+                        <option disabled selected value>--- Select a Colour ---</option>
+                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -176,23 +128,8 @@
                 <div class="form-group">
                     <label for="selfSpamColour">Self spam colour</label>
                     <select class="form-control bg-dark text-white text-monospace small" id="selfSpamColour">
-                        <option disabled selected value>--- Select a Colour --</option>
-                        <option value="red">red</option>
-                        <option value="orange">orange</option>
-                        <option value="green">green</option>
-                        <option value="blue">blue</option>
-                        <option value="cyan">cyan</option>
-                        <option value="magenta">magenta</option>
-                        <option value="white">white</option>
-
-                        <option value="boldRed">bold red</option>
-                        <option value="yellow">yellow</option>
-                        <option value="boldGreen">bold green</option>
-                        <option value="boldBlue">bold blue</option>
-                        <option value="boldCyan">bold cyan</option>
-                        <option value="boldMagenta">bold magenta</option>
-                        <option value="boldBlack">bold black</option>
-                        <option value="boldWhite">bold white</option>
+                        <option disabled selected value>--- Select a Colour ---</option>
+                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
                     </select>
                 </div>
                 <div class="form-check">
@@ -209,23 +146,8 @@
                 <div class="form-group">
                     <label for="targetSpamColour">Target spam colour</label>
                     <select class="form-control bg-dark text-white text-monospace small" id="targetSpamColour">
-                        <option disabled selected value>--- Select a Colour --</option>
-                        <option value="red">red</option>
-                        <option value="orange">orange</option>
-                        <option value="green">green</option>
-                        <option value="blue">blue</option>
-                        <option value="cyan">cyan</option>
-                        <option value="magenta">magenta</option>
-                        <option value="white">white</option>
-
-                        <option value="boldRed">bold red</option>
-                        <option value="yellow">yellow</option>
-                        <option value="boldGreen">bold green</option>
-                        <option value="boldBlue">bold blue</option>
-                        <option value="boldCyan">bold cyan</option>
-                        <option value="boldMagenta">bold magenta</option>
-                        <option value="boldBlack">bold black</option>
-                        <option value="boldWhite">bold white</option>
+                        <option disabled selected value>--- Select a Colour ---</option>
+                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
                     </select>
                 </div>            
                 <div class="form-group">
@@ -236,24 +158,9 @@
                 </div>
                 <div class="form-group">
                     <label for="roomSpamColour">Room spam colour</label>
-                    <select class="form-control bg-dark text-white text-monospace small" id="roomSpammColour">
-                        <option disabled selected value>--- Select a Colour --</option>
-                        <option value="red">red</option>
-                        <option value="orange">orange</option>
-                        <option value="green">green</option>
-                        <option value="blue">blue</option>
-                        <option value="cyan">cyan</option>
-                        <option value="magenta">magenta</option>
-                        <option value="white">white</option>
-
-                        <option value="boldRed">bold red</option>
-                        <option value="yellow">yellow</option>
-                        <option value="boldGreen">bold green</option>
-                        <option value="boldBlue">bold blue</option>
-                        <option value="boldCyan">bold cyan</option>
-                        <option value="boldMagenta">bold magenta</option>
-                        <option value="boldBlack">bold black</option>
-                        <option value="boldWhite">bold white</option>
+                    <select class="form-control bg-dark text-white text-monospace small" id="roomSpamColour">
+                        <option disabled selected value>--- Select a Colour ---</option>
+                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
                     </select>
                 </div>
             </div>

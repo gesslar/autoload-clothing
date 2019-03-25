@@ -46,23 +46,39 @@ const defaultData = {
     }
 };
 
-const colours = {
-    red: "maroon",
-    orange: "olive",
-    green: "green",
-    blue: "navy",
-    cyan: "teal",
-    magenta: "purple",
-    white: "silver",
-    boldRed: "red",
-    yellow: "yellow",
-    boldGreen: "lime",
-    boldBlue: "blue",
-    boldCyan: "aqua",
-    boldMagenta: "fuschia",
-    boldBlack: "gray",
-    boldWhite: "white"
-}
+const colours = [
+    { colour: "red",          cssColour: "maroon", },
+    { colour: "orange",       cssColour: "olive"   },
+    { colour: "green",        cssColour: "green"   },
+    { colour: "blue",         cssColour: "navy"    },
+    { colour: "cyan",         cssColour: "teal"    },
+    { colour: "magenta",      cssColour: "purple"  },
+    { colour: "bold red",     cssColour: "red"     },
+    { colour: "bold green",   cssColour: "lime"    },
+    { colour: "bold blue",    cssColour: "blue"    },
+    { colour: "bold cyan",    cssColour: "aqua"    },
+    { colour: "bold magenta", cssColour: "fuschia" },
+    { colour: "bold black",   cssColour: "gray"    },
+    { colour: "bold white",   cssColour: "white"   },
+];
+
+
+const genders = [
+    { gender: "male",   text: "male"   },
+    { gender: "female", text: "female" },
+];
+
+const categories = [
+        { category: "scabbard", text: "scabbard (scabbard, weapon belt, etc)" },
+        { category: "pockets",  text: "clothing item with pockets (small capacity)" },
+        { category: "scabbard", text: "clothing item with spam command" },    
+];
+
+const findCssColour = (selectedColour) => {
+    return colours.filter(
+        (data) => { return data.colour === selectedColour; }
+    );
+};
 
 const wrapify = (text, maxLineLength = 80, indent = 3) => {
     const parts = text
@@ -117,6 +133,9 @@ const wrapParagraph = (text, maxLineLength, indent) => {
 var app = angular.module('app', ['ngSanitize']);
 app.controller('c', ($scope, $sce) => {
     $scope.item = defaultData;
+    $scope.genders = genders;
+    $scope.categories = categories;
+    $scope.colours = colours;
     $scope.temp = {
         identifiers: "",
         long: ""
@@ -133,7 +152,7 @@ app.controller('c', ($scope, $sce) => {
         const shortDescription = $scope.item.short.text;
         let colour = $scope.item.short.colour;
         if(colour != null && colour != undefined) {
-            colour = colours[colour];
+            colour = findCssColour(colour)[0].cssColour;
             result += `Short description: <span style="color: ${colour};">${shortDescription}</span>\n`;
         } else {
             result += `Short description: ${shortDescription}\n`;
