@@ -11,6 +11,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+    <script src="defaults.js"></script>
+    <script src="genders.js"></script>
+    <script src="colours.js"></script>
+    <script src="categories.js"></script>
+    <script src="wrapify.js"></script>
     <script src="index.js"></script>
 </head>
 
@@ -30,7 +35,7 @@
                     <label for="characterGender">Character gender</label>
                     <select class="form-control bg-dark text-white text-monospace small" id="characterGender" ng-model="item.character.gender">
                         <option disabled selected value>--- Select a Gender ---</option>
-                        <option ng-repeat="g in genders" value="{{g.gender}}">{{g.text}}</option>
+                        <option ng-repeat="g in genders" value="{{g.gender}}">{{g.gender}}</option>
                     </select>
                 </div>
             </div>
@@ -176,7 +181,6 @@
             </div>
         </div>
     </div>
-    <script src="index.js"></script>
 </body>
 
 </html>
