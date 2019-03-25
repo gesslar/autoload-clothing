@@ -22,151 +22,188 @@
 <body style="padding:25px;">
     <div class="container-fluid row" ng-app="app" ng-controller="c">
         <form class="container col-md-4 col">
-            <div class="bg-primary rounded-top text-white p-1 mt-3">
-                <h4>Basic Information</h4>
-            </div>
-            <div class="p-2 bg-light border border-primary rounded-bottom">
-                <div class="form-group">
-                    <label for="characterName" aria-label="12 characters or fewer">Character name</label>
-                    <input type="text" id="characterName" placeholder="Foo"
-                        class="form-control bg-dark text-white text-monospace" ng-model="item.character.name">
+            <!-- Navigation Tabs -->
+            <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#nav-basic">Basic</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-short">Short </a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-long">Long</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-equip">Equip</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-unequip">Unequip</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam">Spam</a></li>
+            </ul>
+            <!-- Tab Panes -->
+            <div class="tab-content">
+                <!-- BASIC INFORMATION -->
+                <div class="tab-pane active container" id="nav-basic">
+                    <div class="bg-primary rounded-top text-white p-1 mt-3">
+                        <h4>Character Information</h4>
+                    </div>
+                    <div class="p-2 bg-light border border-primary rounded-bottom">
+                        <div class="form-group">
+                            <label for="characterName" aria-label="12 characters or fewer">Character name</label>
+                            <input type="text" id="characterName" placeholder="Foo"
+                                class="form-control bg-dark text-white text-monospace" ng-model="item.character.name">
+                        </div>
+                        <div class="form-group">
+                            <label for="characterGender">Character gender</label>
+                            <select class="form-control bg-dark text-white text-monospace small" id="characterGender" ng-model="item.character.gender">
+                                <option disabled selected value>--- Select a Gender ---</option>
+                                <option ng-repeat="g in genders" value="{{g.gender}}">{{g.gender}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="bg-primary rounded-top text-white p-1 mt-3">
+                        <h4>Category</h4>
+                    </div>
+                    <div class="p-2 bg-light border border-primary rounded-bottom">
+                        <div class="form-group">
+                            <label for="itemCategory">Item category</label>
+                            <select class="form-control bg-dark text-white text-monospace small" id="itemCategory" ng-model="item.category">
+                                <option disabled selected value>--- Select a Category ---</option>
+                                <option ng-repeat="c in categories" value="{{c.category}}">{{c.text}}</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="characterGender">Character gender</label>
-                    <select class="form-control bg-dark text-white text-monospace small" id="characterGender" ng-model="item.character.gender">
-                        <option disabled selected value>--- Select a Gender ---</option>
-                        <option ng-repeat="g in genders" value="{{g.gender}}">{{g.gender}}</option>
-                    </select>
+                <!-- SHORT DESCRIPTION AND IDENTIFIERS -->
+                <div class="tab-pane container" id="nav-short">
+                    <div class="bg-primary rounded-top text-white p-1 mt-3">
+                        <h4>Short Information</h4>
+                    </div>
+                    <div class="p-2 bg-light border border-primary rounded-bottom">
+                        <div class="form-group">
+                            <label for="itemShort">Item short description<br /><small>40 characters or fewer</small></label>
+                            <input type="text" id="itemShort" placeholder="Holy Hand Grenade"
+                                class="form-control bg-dark text-white text-monospace" ng-model="item.short.text">
+                        </div>
+                        <div class="form-group">
+                            <label for="itemColour">Item colour</label>
+                            <select class="form-control bg-dark text-white text-monospace small" id="itemColour" ng-model="item.short.colour">
+                                <option disabled selected value>--- Select a Colour ---</option>
+                                <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="bg-primary rounded-top text-white p-1 mt-3">
+                        <h4>Identifiers</h4>
+                    </div>
+                    <div class="p-2 bg-light border border-primary rounded-bottom">
+                        <div class="form-group">
+                            <label for="itemIdentifiers">Identifier<br /><small>Comma-separated list of words used to directly interact with item. Case sensitive.</small></label>
+                            <input type="text" id="itemIdentifiers" placeholder="Holy Hand Grenade,holy hand grenade,hand grenade,grenade"
+                                class="form-control bg-dark text-white text-monospace" ng-model="temp.identifiers">
+                        </div>
+                    </div>                    
                 </div>
-            </div>
-            <div class="bg-primary rounded-top text-white p-1 mt-3">
-                <h4>Category</h4>
-            </div>
-            <div class="p-2 bg-light border border-primary rounded-bottom">
-                <div class="form-group">
-                    <label for="itemCategory">Item category</label>
-                    <select class="form-control bg-dark text-white text-monospace small" id="itemCategory" ng-model="item.category">
-                        <option disabled selected value>--- Select a Category ---</option>
-                        <option ng-repeat="c in categories" value="{{c.category}}">{{c.text}}</option>
-                    </select>
+                <!-- LONG DESCRIPTION -->
+                <div class="tab-pane container" id="nav-long">
+                    <div class="bg-primary rounded-top text-white p-1 mt-3">
+                        <h4>Long Information</h4>
+                    </div>
+                    <div class="p-2 bg-light border border-primary rounded-bottom">
+                        <div class="form-group">
+                            <label for="itemLong">Long description<br /><small>800 characters or fewer, including
+                                    spaces</small></label>
+                            <textarea rows="10" class="form-control bg-dark text-white text-monospace small"
+                                id="itemLong" ng-model="temp.long"></textarea>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="bg-primary rounded-top text-white p-1 mt-3">
-                <h4>Identifiers</h4>
-            </div>
-            <div class="p-2 bg-light border border-primary rounded-bottom">
-                <div class="form-group">
-                    <label for="itemShort">Identifier<br /><small>Comma-separated list of words used to directly interact with item. Case sensitive.</small></label>
-                    <input type="text" id="itemShort" placeholder="Holy Hand Grenade,holy hand grenade,hand grenade,grenade"
-                        class="form-control bg-dark text-white text-monospace" ng-model="temp.identifiers">
+                <!-- EQUIP MESSAGES -->
+                <div class="tab-pane container" id="nav-equip">
+                    <div class="bg-primary rounded-top text-white p-1 mt-3">
+                        <h4>Equip Messages</h4>
+                    </div>
+                    <div class="p-2 bg-light border border-primary rounded-bottom">
+                        <div class="form-group">
+                            <label for="equipMessage">Equip message<br /><small>250 characters or fewer, including
+                                spaces</small></label>
+                            <textarea rows="3" class="form-control bg-dark text-white text-monospace small"
+                                id="unequipMessage" ng-model="item.messages.equip.self.text"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="equipColour">Equip colour</label>
+                            <select class="form-control bg-dark text-white text-monospace small" id="equipColour" ng-model="item.messages.equip.colour">
+                                <option disabled selected value>--- Select a Colour ---</option>
+                                <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="bg-primary rounded-top text-white p-1 mt-3">
-                <h4>Short Information</h4>
-            </div>
-            <div class="p-2 bg-light border border-primary rounded-bottom">
-                <div class="form-group">
-                    <label for="itemShort">Item short description<br /><small>40 characters or fewer</small></label>
-                    <input type="text" id="itemShort" placeholder="Holy Hand Grenade"
-                        class="form-control bg-dark text-white text-monospace" ng-model="item.short.text">
+                <!-- UNEQUIP MESSAGES -->
+                <div class="tab-pane container" id="nav-unequip">
+                    <div class="bg-primary rounded-top text-white p-1 mt-3">
+                        <h4>Equip Messages</h4>
+                    </div>
+                    <div class="form-group">
+                        <label for="unequipMessage">Unequip message<br /><small>250 characters or fewer, including
+                                spaces</small></label>
+                        <textarea rows="3" class="form-control bg-dark text-white text-monospace small"
+                            id="unequipMessage" ng-model="item.messages.unequip.self.text"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="unequipColour">Equip colour</label>
+                        <select class="form-control bg-dark text-white text-monospace small" id="unequipColour" ng-model="item.messages.unequip.colour">
+                            <option disabled selected value>--- Select a Colour ---</option>
+                            <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="itemColour">Item colour</label>
-                    <select class="form-control bg-dark text-white text-monospace small" id="itemColour" ng-model="item.short.colour">
-                        <option disabled selected value>--- Select a Colour ---</option>
-                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="bg-primary rounded-top text-white p-1 mt-3">
-                <h4>Long Information</h4>
-            </div>
-            <div class="p-2 bg-light border border-primary rounded-bottom">
-                <div class="form-group">
-                    <label for="itemLong">Long description<br /><small>800 characters or fewer, including
-                            spaces</small></label>
-                    <textarea rows="10" class="form-control bg-dark text-white text-monospace small"
-                        id="itemLong" ng-model="temp.long"></textarea>
-                </div>
-            </div>
-            <div class="bg-primary rounded-top text-white p-1 mt-3">
-                <h4>Equip Messages</h4>
-            </div>
-            <div class="p-2 bg-light border border-primary rounded-bottom">
-                <div class="form-group">
-                    <label for="equipMessage">Equip message<br /><small>250 characters or fewer, including
-                            spaces</small></label>
-                    <textarea rows="3" class="form-control bg-dark text-white text-monospace small"
-                        id="unequipMessage" ng-model="item.messages.equip.self.text"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="equipColour">Equip colour</label>
-                    <select class="form-control bg-dark text-white text-monospace small" id="equipColour" ng-model="item.messages.equip.colour">
-                        <option disabled selected value>--- Select a Colour ---</option>
-                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="unequipMessage">Unequip message<br /><small>250 characters or fewer, including
-                            spaces</small></label>
-                    <textarea rows="3" class="form-control bg-dark text-white text-monospace small"
-                        id="unequipMessage" ng-model="item.messages.unequip.self.text"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="unequipColour">Equip colour</label>
-                    <select class="form-control bg-dark text-white text-monospace small" id="unequipColour" ng-model="item.messages.unequip.colour">
-                        <option disabled selected value>--- Select a Colour ---</option>
-                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="spamCommand">Spam command</label>
-                    <input type="text" id="spamCommand" placeholder="toss grenade"
-                        class="form-control bg-dark text-white text-monospace">
-                </div>
-                <div class="form-group">
-                    <label for="selfSpamMessage">Self spam message<br /><small>320 characters or fewer, including
-                            spaces</small></label>
-                    <textarea rows="4" class="form-control bg-dark text-white text-monospace small"
-                        id="selfSpamMessage"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="selfSpamColour">Self spam colour</label>
-                    <select class="form-control bg-dark text-white text-monospace small" id="selfSpamColour">
-                        <option disabled selected value>--- Select a Colour ---</option>
-                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
-                    </select>
-                </div>
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" value="">Does this spam target someone other than yourself?
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label for="targetSpamMessage">Target spam message<br /><small>320 characters or fewer, including
-                            spaces</small></label>
-                    <textarea rows="4" class="form-control bg-dark text-white text-monospace small"
-                        id="targetSpamMessage"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="targetSpamColour">Target spam colour</label>
-                    <select class="form-control bg-dark text-white text-monospace small" id="targetSpamColour">
-                        <option disabled selected value>--- Select a Colour ---</option>
-                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
-                    </select>
-                </div>            
-                <div class="form-group">
-                    <label for="roomSpamMessage">Room spam message<br /><small>320 characters or fewer, including
-                            spaces</small></label>
-                    <textarea rows="4" class="form-control bg-dark text-white text-monospace small"
-                        id="roomSpamMessage"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="roomSpamColour">Room spam colour</label>
-                    <select class="form-control bg-dark text-white text-monospace small" id="roomSpamColour">
-                        <option disabled selected value>--- Select a Colour ---</option>
-                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
-                    </select>
+                
+                <!-- SPAM MESSAGES -->
+                <div class="tab-pane container" id="nav-spam">
+                    <div class="bg-primary rounded-top text-white p-1 mt-3">
+                        <h4>Spam Messages</h4>
+                    </div>
+                    <div class="form-group">
+                        <label for="spamCommand">Spam command</label>
+                        <input type="text" id="spamCommand" placeholder="toss grenade"
+                            class="form-control bg-dark text-white text-monospace">
+                    </div>
+                    <div class="form-group">
+                        <label for="selfSpamMessage">Self spam message<br /><small>320 characters or fewer, including
+                                spaces</small></label>
+                        <textarea rows="4" class="form-control bg-dark text-white text-monospace small"
+                            id="selfSpamMessage"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="selfSpamColour">Self spam colour</label>
+                        <select class="form-control bg-dark text-white text-monospace small" id="selfSpamColour">
+                            <option disabled selected value>--- Select a Colour ---</option>
+                            <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
+                        </select>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="">Does this spam target someone other than yourself?
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="targetSpamMessage">Target spam message<br /><small>320 characters or fewer, including
+                                spaces</small></label>
+                        <textarea rows="4" class="form-control bg-dark text-white text-monospace small"
+                            id="targetSpamMessage"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="targetSpamColour">Target spam colour</label>
+                        <select class="form-control bg-dark text-white text-monospace small" id="targetSpamColour">
+                            <option disabled selected value>--- Select a Colour ---</option>
+                            <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
+                        </select>
+                    </div>            
+                    <div class="form-group">
+                        <label for="roomSpamMessage">Room spam message<br /><small>320 characters or fewer, including
+                                spaces</small></label>
+                        <textarea rows="4" class="form-control bg-dark text-white text-monospace small"
+                            id="roomSpamMessage"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomSpamColour">Room spam colour</label>
+                        <select class="form-control bg-dark text-white text-monospace small" id="roomSpamColour">
+                            <option disabled selected value>--- Select a Colour ---</option>
+                            <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </form>
