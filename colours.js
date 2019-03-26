@@ -1,4 +1,5 @@
 const colours = [
+    { colour: "white",        cssColour: "silver", },
     { colour: "red",          cssColour: "maroon", },
     { colour: "orange",       cssColour: "olive"   },
     { colour: "green",        cssColour: "green"   },
@@ -16,7 +17,8 @@ const colours = [
 ];
 
 const findCssColour = (selectedColour) => {
-    return colours.filter(
+    const result = colours.filter(
         (data) => { return data.colour === selectedColour; }
     );
+    return result.length ? result[0].cssColour : "silver";
 };

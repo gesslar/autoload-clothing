@@ -4,7 +4,8 @@ const genders = [
 ];
 
 const findGenderInformation = (gender) => {
-    return genders.filter(
+    const result = genders.filter(
         (data) => { return data.gender === gender; }
     );
+    return result.length ? result[0] : null;
 };

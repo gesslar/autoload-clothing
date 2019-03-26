@@ -20,21 +20,39 @@ app.controller('c', ($scope, $sce) => {
         return JSON.stringify($scope.item, null, 80);
     };
     $scope.preview = () => {
-        let result = "";
-        const shortDescription = $scope.item.short.text || "";
-        const longDescription = $scope.item.long.text || "";
-        let colour = $scope.item.short.colour;
+        let result = "", temp = "";
+        // const id = $scope.item.identifiers.length > 0 ? ($scope.item.itentifiers[0].length > 0 ? $scope.item.identifiers[0] : "clothing") : "clothing";
+
+
         result += `                   <span style="color: yellow;">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>\n`;
         result += `                 <span style="color: yellow;"><</span> <span style="color: white;">Threshold Autoload Clothing Item Previewer</span> <span style="color: yellow;">></span>\n`;
         result += `                   <span style="color: yellow;">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>\n`;
-        if(colour === null || colour === undefined) colour = "white";
-        result += `<span style="color: ${colour};">${shortDescription}</span>\n`;
-        result += longDescription + "\n";
 
-        result += "Equip message:\n";
+        // SHORT DESCRIPTION
+        if($scope.item.short.text) {
+            const shortDescription = $scope.item.short.text;
+            const colour = findCssColour($scope.item.short.colour);
+            result += `<div style="color: ${colour};">${shortDescription}</div>\n`;
+        }
+        
+        // LONG DESCRIPTION
+        if($scope.item.long.text) {
+            const longDescription = $scope.item.long.text || "";      
+            result += `<div style="color: silver">${longDescription}</div>\n`;
+        }
 
-        if(item.messages.equip.self.text)
-            result += substituteMessage = (item.messages.equip.self.text, "self", false, item.short.text, item.character);
+        // MESSAGES
+        if($scope.item.messages.equip.self.text) {
+            const colour = findCssColour($scope.item.messages.equip.colour);
+            const equipSelfMessage = wrapify(substituteMessage($scope.item.messages.equip.self.text, "self", false, $scope.item.short.text, $scope.item.character), 80, 0);
+            result += `<div>Equip message (self)</div><div style="color: ${colour}">${equipSelfMessage}</div>`;
+        }
+        if($scope.item.messages.equip.room.text) {
+            const colour = findCssColour($scope.item.messages.equip.colour);
+            const equipRoomMessage = wrapify(substituteMessage($scope.item.messages.equip.room.text, "room", false, $scope.item.short.text, $scope.item.character), 80, 0);
+            result += `<div>Equip message (room)</div><div style="color: ${colour}">${equipRoomMessage}</div>`;
+        }
+
         // Required to send HTML/CSS to an angular element
         return $sce.trustAsHtml(result);
     };
