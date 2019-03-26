@@ -1,1 +1,7 @@
 @import "https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+
+.centre-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
