@@ -11,12 +11,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
-    <script src="defaults.js"></script>
-    <script src="genders.js"></script>
-    <script src="colours.js"></script>
-    <script src="categories.js"></script>
-    <script src="wrapify.js"></script>
-    <script src="index.js"></script>
 </head>
 
 <body style="padding:25px;">
@@ -29,7 +23,7 @@
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-long">Long</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-equip">Equip</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-unequip">Unequip</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam">Spam</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam" ng-if="item.category==='spam'">Spam</a></li>
             </ul>
             <!-- Tab Panes -->
             <div class="tab-content">
@@ -134,7 +128,7 @@
                         <div class="p-2 bg-light border border-primary rounded-bottom">
                             <div class="form-group">
                                 <label for="equipMessageRoom">Room equip message<br /><small>250 characters or fewer, including spaces</small></label>
-                                <textarea rows="3" class="form-control bg-dark text-white text-monospace small" id="equipMessageSelf" ng-model="item.messages.equip.self.text"></textarea>
+                                <textarea rows="3" class="form-control bg-dark text-white text-monospace small" id="equipMessageRoom" ng-model="item.messages.equip.room.text"></textarea>
                             </div>
                         </div>
                     </div>
@@ -169,13 +163,13 @@
                         <div class="p-2 bg-light border border-primary rounded-bottom">
                             <div class="form-group">
                                 <label for="unequipMessageRoom">Room unequip message<br /><small>250 characters or fewer, including spaces</small></label>
-                                <textarea rows="3" class="form-control bg-dark text-white text-monospace small" id="unequipMessageSelf" ng-model="item.messages.unequip.self.text"></textarea>
+                                <textarea rows="3" class="form-control bg-dark text-white text-monospace small" id="unequipMessageRoom" ng-model="item.messages.unequip.room.text"></textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- SPAM MESSAGES -->
-                <div class="tab-pane container fade" id="nav-spam">
+                <div class="tab-pane container fade" id="nav-spam" ng-if="item.category=='spam'">
                     <ul class="nav nav-tabs">
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#nav-spam-general">General</a></li>
                         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam-messages">Messages </a></li>
@@ -191,7 +185,7 @@
                                     <input type="text" id="spamCommand" placeholder="toss grenade" class="form-control bg-dark text-white text-monospace">
                                 </div>
                                 <div class="form-group">
-                                    <label for="spamColour">Target spam colour</label>
+                                    <label for="spamColour">Spam colour</label>
                                     <select class="form-control bg-dark text-white text-monospace small" ng-model="item.messages.spam.colour" id="spamColour">
                                         <option disabled selected value>--- Select a Colour ---</option>
                                         <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
@@ -199,7 +193,7 @@
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" value="">Does this spam target someone other than yourself?
+                                        <input type="checkbox" class="form-check-input" ng-model="options.targettable">Does this spam target someone other than yourself?</input>
                                     </label>
                                 </div>
                             </div>
@@ -213,7 +207,7 @@
                                     <label for="selfSpamMessage">Self spam message<br /><small>320 characters or fewer, including spaces</small></label>
                                     <textarea rows="4" class="form-control bg-dark text-white text-monospace small" id="selfSpamMessage"></textarea>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" ng-if="options.targettable===true">
                                     <label for="targetSpamMessage">Target spam message<br /><small>320 characters or fewer, including spaces</small></label>
                                     <textarea rows="4" class="form-control bg-dark text-white text-monospace small" id="targetSpamMessage"></textarea>
                                 </div>
@@ -227,15 +221,21 @@
                 </div>
             </div>
         </form>
-        <div class="container h-100">
+        <div class="container h-100 d-none d-lg-block">
             <div class="col-md-7 col text-monospace small shadow p-4 mb-4 h-50">
                 <div ng-bind-html="preview()" style="white-space: pre-wrap" class="pre bg-dark text-white"></div>
             </div>
             <div class="col-md-7 col text-monospace small shadow p-4 mb-4 h-50">
-                <pre class="pre bg-dark text-white ">{{basicInformation()}}</pre>
+                <pre class="pre bg-dark text-white ">{{updateItemInformation()}}</pre>
             </div>
         </div>
     </div>
+    <script src="defaults_Karahd.js"></script>
+    <script src="genders.js"></script>
+    <script src="colours.js"></script>
+    <script src="categories.js"></script>
+    <script src="wrapify.js"></script>
+    <script src="messages.js"></script>
+    <script src="index.js"></script>
 </body>
-
 </html>

@@ -1,4 +1,6 @@
-const wrapify = (text, maxLineLength = 80, indent = 3) => {
+const wrapify = (text = "", maxLineLength = 80, indent = 3) => {
+    if(text === null || text === undefined || !text.length) return "";
+
     const parts = text
     .replace(/\r\n/g, "\n")
     .replace(/\n{3,}/g, "\n\n")

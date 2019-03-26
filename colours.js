@@ -5,6 +5,7 @@ const colours = [
     { colour: "blue",         cssColour: "navy"    },
     { colour: "cyan",         cssColour: "teal"    },
     { colour: "magenta",      cssColour: "purple"  },
+    { colour: "yellow",       cssColour: "yellow"  },
     { colour: "bold red",     cssColour: "red"     },
     { colour: "bold green",   cssColour: "lime"    },
     { colour: "bold blue",    cssColour: "blue"    },
