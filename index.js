@@ -44,12 +44,12 @@ app.controller('c', ($scope, $sce) => {
         // MESSAGES
         if($scope.item.messages.equip.self.text) {
             const colour = findCssColour($scope.item.messages.equip.colour);
-            const equipSelfMessage = wrapify(substituteMessage($scope.item.messages.equip.self.text, "self", false, $scope.item.short.text, $scope.item.character), 80, 0);
+            const equipSelfMessage = iwrapify(substituteMessage($scope.item.messages.equip.self.text, "self", false, $scope.item.short.text, $scope.item.character), 80, 0);
             result += `<div>Equip message (self)</div><div style="color: ${colour}">${equipSelfMessage}</div>`;
         }
         if($scope.item.messages.equip.room.text) {
             const colour = findCssColour($scope.item.messages.equip.colour);
-            const equipRoomMessage = wrapify(substituteMessage($scope.item.messages.equip.room.text, "room", false, $scope.item.short.text, $scope.item.character), 80, 0);
+            const equipRoomMessage = iwrapify(substituteMessage($scope.item.messages.equip.room.text, "room", false, $scope.item.short.text, $scope.item.character), 80, 0);
             result += `<div>Equip message (room)</div><div style="color: ${colour}">${equipRoomMessage}</div>`;
         }
 
