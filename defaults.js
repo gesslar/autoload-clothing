@@ -1,46 +1,47 @@
 const defaultData = {
     character: {
-        name: "",
-        gender: "",
+        name: null,
+        gender: null,
     },
-    category: "",
+    category: null,
     identifiers: [],
     short: {
-        colour: "white",
-        text: ""
+        colour: null,
+        text: null
     },
     long: {
-        text: ""
+        text: null
     },
     messages: {
         equip: {
-            colour: "white",
+            colour: null,
             self: {
-                text: ""
+                text: null
             },
             room: {
-                text: ""
+                text: null
             }
         },
         unequip: {
-            colour: "white",
+            colour: null,
             self: {
-                text: ""
+                text: null
             },
             room: {
-                text: ""
+                text: null
             }
         },
         spam: {
-            colour: "white",
+            command: null,
+            colour: null,
             self: {
-                text: "",
+                text: null,
             },
             target: {
-                text: "",
+                text: null,
             },
             room: {
-                text: "",
+                text: null,
             }
         }
     }
