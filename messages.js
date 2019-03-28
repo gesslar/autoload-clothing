@@ -7,77 +7,77 @@ const substituteMessage = (mess, audience, targetted, short, character, target =
     const myGenderData = findGenderInformation(character.gender) || findGenderInformation("male");
     const targetGenderData = findGenderInformation(target.gender) || findGenderInformation("male");
 
-    mess = mess.replace("SHORT", short);
+    mess = mess.replace(/SHORT/g, short);
 
     switch (audience) {
         case "self":
             if (targetted) {
-                mess = mess.replace("^VNAME", target.name);
-                mess = mess.replace("^VPOSS", capitalize(targetGenderData.poss));
-                mess = mess.replace("^VOBJ",  capitalize(targetGenderData.obj));
-                mess = mess.replace("^VSUB",  capitalize(targetGenderData.sub));
+                mess = mess.replace(/\^VNAME/g, target.name);
+                mess = mess.replace(/\^VPOSS/g, capitalize(targetGenderData.poss));
+                mess = mess.replace(/\^VOBJ/g,  capitalize(targetGenderData.obj));
+                mess = mess.replace(/\^VSUB/g,  capitalize(targetGenderData.sub));
 
-                mess = mess.replace("VNAME", target.name);
-                mess = mess.replace("VPOSS", targetGenderData.poss);
-                mess = mess.replace("VOBJ",  targetGenderData.obj);
-                mess = mess.replace("VSUB",  targetGenderData.sub);
+                mess = mess.replace(/VNAME/g, target.name);
+                mess = mess.replace(/VPOSS/g, targetGenderData.poss);
+                mess = mess.replace(/VOBJ/g,  targetGenderData.obj);
+                mess = mess.replace(/VSUB/g,  targetGenderData.sub);
             }
 
-            mess = mess.replace("^NAME", "You");
-            mess = mess.replace("^SUB",  "You");
-            mess = mess.replace("^OBJ",  "You");
-            mess = mess.replace("^POSS", "Your");
+            mess = mess.replace(/\^NAME/g, "You");
+            mess = mess.replace(/\^SUB/g,  "You");
+            mess = mess.replace(/\^OBJ/g,  "You");
+            mess = mess.replace(/\^POSS/g, "Your");
 
-            mess = mess.replace("NAME", "you");
-            mess = mess.replace("SUB",  "you");
-            mess = mess.replace("OBJ",  "you");
-            mess = mess.replace("POSS", "your");
+            mess = mess.replace(/NAME/g, "you");
+            mess = mess.replace(/SUB/g,  "you");
+            mess = mess.replace(/OBJ/g,  "you");
+            mess = mess.replace(/POSS/g, "your");
             break;
         case "target":
             if (targetted) {
-                mess = mess.replace("^VNAME", "You");
-                mess = mess.replace("^VSUB",  "You");
-                mess = mess.replace("^VOBJ",  "You");
-                mess = mess.replace("^VPOSS", "Your");
+                mess = mess.replace(/\^VNAME/g, "You");
+                mess = mess.replace(/\^VSUB/g,  "You");
+                mess = mess.replace(/\^VOBJ/g,  "You");
+                mess = mess.replace(/\^VPOSS/g, "Your");
 
-                mess = mess.replace("VNAME", "you");
-                mess = mess.replace("VSUB",  "you");
-                mess = mess.replace("VOBJ",  "you");
-                mess = mess.replace("VPOSS", "your");
+                mess = mess.replace(/VNAME/g, "you");
+                mess = mess.replace(/VSUB/g,  "you");
+                mess = mess.replace(/VOBJ/g,  "you");
+                mess = mess.replace(/VPOSS/g, "your");
             }
 
-            mess = mess.replace("^NAME", character.name);
-            mess = mess.replace("^SUB",  capitalize(myGenderData.sub));
-            mess = mess.replace("^OBJ",  capitalize(myGenderData.obj));
-            mess = mess.replace("^POSS", capitalize(myGenderData.poss));
+            mess = mess.replace(/\^NAME/g, character.name);
+            mess = mess.replace(/\^SUB/g,  capitalize(myGenderData.sub));
+            mess = mess.replace(/\^OBJ/g,  capitalize(myGenderData.obj));
+            mess = mess.replace(/\^POSS/g, capitalize(myGenderData.poss));
 
-            mess = mess.replace("NAME", character.name);
-            mess = mess.replace("SUB",  myGenderData.sub);
-            mess = mess.replace("OBJ",  myGenderData.obj);
-            mess = mess.replace("POSS", myGenderData.poss);
+            mess = mess.replace(/NAME/g, character.name);
+            mess = mess.replace(/SUB/g,  myGenderData.sub);
+            mess = mess.replace(/OBJ/g,  myGenderData.obj);
+            mess = mess.replace(/POSS/g, myGenderData.poss);
             break;
         case "room":
             if (targetted) {
-                mess = mess.replace("^VNAME", target.name);
-                mess = mess.replace("^VPOSS", capitalize(targetGenderData.poss));
-                mess = mess.replace("^VOBJ",  capitalize(targetGenderData.obj));
-                mess = mess.replace("^VSUB",  capitalize(targetGenderData.sub));
+                mess = mess.replace(/\^VNAME/g, target.name);
+                mess = mess.replace(/\^VPOSS/g, capitalize(targetGenderData.poss));
+                mess = mess.replace(/\^VOBJ/g,  capitalize(targetGenderData.obj));
+                mess = mess.replace(/\^VSUB/g,  capitalize(targetGenderData.sub));
 
-                mess = mess.replace("VNAME", target.name);
-                mess = mess.replace("VPOSS", targetGenderData.poss);
-                mess = mess.replace("VOBJ",  targetGenderData.obj);
-                mess = mess.replace("VSUB",  targetGenderData.sub);
+                mess = mess.replace(/VNAME/g, target.name);
+                mess = mess.replace(/VPOSS/g, targetGenderData.poss);
+                mess = mess.replace(/VOBJ/g,  targetGenderData.obj);
+                mess = mess.replace(/VSUB/g,  targetGenderData.sub);
             }
 
-            mess = mess.replace("^NAME", character.name);
-            mess = mess.replace("^SUB",  capitalize(myGenderData.sub));
-            mess = mess.replace("^OBJ",  capitalize(myGenderData.obj));
-            mess = mess.replace("^POSS", capitalize(myGenderData.poss));
+            mess = mess.replace(/\^NAME/g, character.name);
+            mess = mess.replace(/\^SUB/g,  capitalize(myGenderData.sub));
+            mess = mess.replace(/\^OBJ/g,  capitalize(myGenderData.obj));
+            mess = mess.replace(/\^POSS/g, capitalize(myGenderData.poss));
 
-            mess = mess.replace("NAME", character.name);
-            mess = mess.replace("SUB",  myGenderData.sub);
-            mess = mess.replace("OBJ",  myGenderData.obj);
-            mess = mess.replace("POSS", myGenderData.poss);
+            mess = mess.replace(/NAME/g, character.name);
+            mess = mess.replace(/SUB/g,  myGenderData.sub);
+            mess = mess.replace(/OBJ/g,  myGenderData.obj);
+            mess = mess.replace(/POSS/g, myGenderData.poss);
             break;
     }
 

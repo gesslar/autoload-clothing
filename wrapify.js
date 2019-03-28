@@ -94,7 +94,7 @@ const iwrapParagraph = (text, maxLineLength, indent) => {
         if(!firstLineDone) firstLineDone = true;
         if (lineLength + word.length >= (firstLineDone ? firstLineLength : remainingLinesLength)) {
             lineLength = word.length + indent;
-            return result + `\n${".".repeat(indent)}${word}`; // don't add spaces upfront
+            return result + `\n${" ".repeat(indent)}${word}`; // don't add spaces upfront
         } else {
             lineLength += word.length + (result ? 1 : 0);
             return result ? result + ` ${word}` : `${word}`; // add space only when needed

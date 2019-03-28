@@ -229,12 +229,13 @@
                                         <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
                                     </select>
                                 </div>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input"
-                                            ng-model="options.targettable">Does this spam target someone other than
-                                        yourself?</input>
-                                    </label>
+                                <div class="custom-control custom-checkbox">
+
+                                        <input type="checkbox" class="custom-control-input" id="optionTargettable" ng-model="options.targettable">
+                                        <label class="custom-control-label" for="optionTargettable">Does this spam target someone other than yourself?</label>
+
+                                    <!-- <input type="checkbox" class="custom-control-checkbox" ng-model="options.targettable" id="optionTargettable">
+                                    <label class="custom-control-label" for="optionTargettable"></label> -->
                                 </div>
                             </div>
                         </div>
@@ -267,10 +268,9 @@
                 </div>
             </div>
         </form>
-        <div class="container h-100 d-none d-lg-block col">
+        <div class="container h-100 d-none d-lg-block col col-lg-5">
             <div class="col text-monospace small shadow p-2 mb-2 h-50">
                 <div ng-bind-html="preview()" style="white-space: pre-wrap" class="pre bg-dark text-light">
-                        
                 </div>
             </div>
             <div class="col-lg-7 col text-monospace small shadow p-2 mb-2 h-50" style="display:none;">
