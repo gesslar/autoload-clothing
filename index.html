@@ -7,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
 </head>
 
-<body style="padding:25px;">
-    <div class="container-fluid row" ng-app="app" ng-controller="c">
-        <form class="container col-md-3 col">
+<body style="padding:25px;" ng-app="app" ng-controller="c" ng-cloak>
+    <div class="container-fluid row">
+        <form class="container col-lg-5 col">
             <!-- Navigation Tabs -->
-            <ul class="nav nav-pills small">
+            <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#nav-basic">Basic 
                     <span ng-if="remaining('basic')" class="badge badge-danger">{{remaining("basic")}}</span>
                 </a></li>
@@ -267,11 +267,13 @@
                 </div>
             </div>
         </form>
-        <div class="container h-100 d-none d-lg-block">
-            <div class="col-md-7 col text-monospace small shadow p-4 mb-4 h-50">
-                <div ng-bind-html="preview()" style="white-space: pre-wrap" class="pre bg-dark text-light"></div>
+        <div class="container h-100 d-none d-lg-block col">
+            <div class="col text-monospace small shadow p-2 mb-2 h-50">
+                <div ng-bind-html="preview()" style="white-space: pre-wrap" class="pre bg-dark text-light">
+                        
+                </div>
             </div>
-            <div class="col-md-7 col text-monospace small shadow p-4 mb-4 h-50">
+            <div class="col-lg-7 col text-monospace small shadow p-2 mb-2 h-50" style="display:none;">
                 <pre class="pre bg-dark text-white ">{{updateItemInformation()}}</pre>
             </div>
         </div>

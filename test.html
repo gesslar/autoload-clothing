@@ -1,48 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
-<body>
+<html lang = "en" >
+   <head>
+      <link rel = "stylesheet"
+         href = "https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
 
-<div class="container mt-3">
-  <h2>Toggleable Tabs</h2>
-  <br>
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" data-toggle="tab" href="#home">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
-    </li>
-  </ul>
+      <script type = "text/javascript">    
+         angular.module('firstApplication', ['ngMaterial']);
+      </script>
+   </head>
+   
+   <body ng-app = "firstApplication" ng-cloak>
 
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div id="home" class="container tab-pane active"><br>
-      <h3>HOME</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </div>
-    <div id="menu1" class="container tab-pane fade"><br>
-      <h3>Menu 1</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
-    <div id="menu2" class="container tab-pane fade"><br>
-      <h3>Menu 2</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    </div>
-  </div>
-</div>
+      <mat-tab-group>
+          <mat-tab label="One">
+            <h1>Some tab content</h1>
+            <p>...</p>
+          </mat-tab>
+          <mat-tab label="Two">
+            <h1>Some more tab content</h1>
+            <p>...</p>
+          </mat-tab>
+        </mat-tab-group>
 
-</body>
+      <md-toolbar class = "md-warn">
+         <div class = "md-toolbar-tools">
+            <h2 class = "md-flex">HTML 5</h2>
+         </div>
+      </md-toolbar>
+      
+      <md-content flex layout-padding>
+         <p>HTML5 is the next major revision of the HTML standard superseding HTML 4.01,
+         XHTML 1.0, and XHTML 1.1. HTML5 is a standard for structuring and presenting 
+         content on the World Wide Web.</p>
+
+         <p>HTML5 is a cooperation between the World Wide Web Consortium (W3C) and the Web
+         ypertext Application Technology Working Group (WHATWG).</p>
+         
+         <p>The new standard incorporates features like video playback and drag-and-drop
+         that have been previously dependent on third-party browser plug-ins such as Adobe
+         Flash, Microsoft Silverlight, and Google Gears.</p>
+      </md-content>
+   </body>
 </html>

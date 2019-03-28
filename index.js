@@ -77,6 +77,7 @@ app.controller('c', ($scope, $sce) => {
         result += `                   <span style="color: yellow;">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>\n`;
         result += `                 <span style="color: yellow;"><</span> <span style="color: white;">Threshold Autoload Clothing Item Previewer</span> <span style="color: yellow;">></span>\n`;
         result += `                   <span style="color: yellow;">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>\n`;
+        result += `123456789-123456789-123456789-123456789-123456789-123456789-123456789-123456789-`;
 
         // SHORT DESCRIPTION
         if($scope.item.short.text) {
