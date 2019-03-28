@@ -34,7 +34,7 @@ const substituteMessage = (mess, audience, targetted, short, character, target =
             mess = mess.replace("POSS", "your");
             break;
         case "target":
-            if (targeted) {
+            if (targetted) {
                 mess = mess.replace("^VNAME", "You");
                 mess = mess.replace("^VSUB",  "You");
                 mess = mess.replace("^VOBJ",  "You");

@@ -119,17 +119,17 @@ app.controller('c', ($scope, $sce) => {
         // SPAM
         if($scope.item.messages.spam.self.text) {
             const colour = findCssColour($scope.item.messages.spam.colour);
-            const spamSelfMessage = iwrapify(substituteMessage($scope.item.messages.spam.self.text, "self", false, $scope.item.short.text, $scope.item.character), 80, 0);
+            const spamSelfMessage = iwrapify(substituteMessage($scope.item.messages.spam.self.text, "self", $scope.options.targettable, $scope.item.short.text, $scope.item.character), 80, 0);
             result += `<div>Spam message (self)</div><div style="color: ${colour}">${spamSelfMessage}</div>`;
         }
         if($scope.item.messages.spam.target.text && $scope.options.targettable) {
             const colour = findCssColour($scope.item.messages.spam.colour);
-            const spamTargetMessage = iwrapify(substituteMessage($scope.item.messages.spam.target.text, "self", false, $scope.item.short.text, $scope.item.character), 80, 0);
+            const spamTargetMessage = iwrapify(substituteMessage($scope.item.messages.spam.target.text, "target", $scope.options.targettable, $scope.item.short.text, $scope.item.character), 80, 0);
             result += `<div>Spam message (target)</div><div style="color: ${colour}">${spamTargetMessage}</div>`;
         }
         if($scope.item.messages.spam.room.text) {
             const colour = findCssColour($scope.item.messages.spam.colour);
-            const unequipRoomMessage = iwrapify(substituteMessage($scope.item.messages.spam.room.text, "room", false, $scope.item.short.text, $scope.item.character), 80, 0);
+            const unequipRoomMessage = iwrapify(substituteMessage($scope.item.messages.spam.room.text, "room", $scope.options.targettable, $scope.item.short.text, $scope.item.character), 80, 0);
             result += `<div>Spam message (room)</div><div style="color: ${colour}">${unequipRoomMessage}</div>`;
         }
 
