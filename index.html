@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
@@ -19,24 +19,25 @@
         <form class="container col-lg-5 col">
             <!-- Navigation Tabs -->
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#nav-basic">Basic 
-                    <span ng-if="remaining('basic')" class="badge badge-danger">{{remaining("basic")}}</span>
-                </a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-short">Short 
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#nav-basic">Basic
+                        <span ng-if="remaining('basic')" class="badge badge-danger">{{remaining("basic")}}</span>
+                    </a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-short">Short
                         <span ng-if="remaining('short')" class="badge badge-danger">{{remaining("short")}}</span>
-                </a></li>
+                    </a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-long">Long
                         <span ng-if="remaining('long')" class="badge badge-danger">{{remaining("long")}}</span>
-                </a></li>
+                    </a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-equip">Equip
                         <span ng-if="remaining('equip')" class="badge badge-danger">{{remaining("equip")}}</span>
-                </a></li>
+                    </a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-unequip">Unequip
                         <span ng-if="remaining('unequip')" class="badge badge-danger">{{remaining("unequip")}}</span>
-                </a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam" ng-if="item.category==='spam'">Spam 
+                    </a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam"
+                        ng-if="item.category==='spam'">Spam
                         <span ng-if="remaining('spam')" class="badge badge-danger">{{remaining("spam")}}</span>
-                </a></li>
+                    </a></li>
             </ul>
             <!-- Tab Panes -->
             <div class="tab-content">
@@ -203,12 +204,15 @@
                 <!-- SPAM MESSAGES -->
                 <div class="tab-pane container fade" id="nav-spam" ng-if="item.category=='spam'">
                     <ul class="nav nav-pills small">
-                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#nav-spam-general">General 
-                                <span ng-if="remaining('spam-general')" class="badge badge-danger">{{remaining("spam-general")}}</span>
-                        </a></li>
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab"
+                                href="#nav-spam-general">General
+                                <span ng-if="remaining('spam-general')"
+                                    class="badge badge-danger">{{remaining("spam-general")}}</span>
+                            </a></li>
                         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam-messages">Messages
-                                <span ng-if="remaining('spam-messages')" class="badge badge-danger">{{remaining("spam-messages")}}</span>
-                        </a></li>
+                                <span ng-if="remaining('spam-messages')"
+                                    class="badge badge-danger">{{remaining("spam-messages")}}</span>
+                            </a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane container active in" id="nav-spam-general">
@@ -219,7 +223,8 @@
                                 <div class="form-group">
                                     <label for="spamCommand">Spam command</label>
                                     <input type="text" id="spamCommand" placeholder="toss grenade"
-                                        class="form-control bg-dark text-white text-monospace" ng-model="item.messages.spam.command">
+                                        class="form-control bg-dark text-white text-monospace"
+                                        ng-model="item.messages.spam.command">
                                 </div>
                                 <div class="form-group">
                                     <label for="spamColour">Spam colour</label>
@@ -231,8 +236,10 @@
                                 </div>
                                 <div class="custom-control custom-checkbox">
 
-                                        <input type="checkbox" class="custom-control-input" id="optionTargettable" ng-model="options.targettable">
-                                        <label class="custom-control-label" for="optionTargettable">Does this spam target someone other than yourself?</label>
+                                    <input type="checkbox" class="custom-control-input" id="optionTargettable"
+                                        ng-model="options.targettable">
+                                    <label class="custom-control-label" for="optionTargettable">Does this spam target
+                                        someone other than yourself?</label>
 
                                     <!-- <input type="checkbox" class="custom-control-checkbox" ng-model="options.targettable" id="optionTargettable">
                                     <label class="custom-control-label" for="optionTargettable"></label> -->
@@ -271,6 +278,96 @@
         <div class="container h-100 d-none d-lg-block col col-lg-5">
             <div class="col text-monospace small shadow p-2 mb-2 h-50">
                 <div ng-bind-html="preview()" style="white-space: pre-wrap" class="pre bg-dark text-light">
+                </div>
+            </div>
+            <div>
+                <div class="bg-info rounded-top text-white p-1 mt-3 text-small p-2">
+                    <span>Messages Help</span>
+                    <a data-toggle="collapse" class="float-right" href="#help"><span class="text-light">(&quest;)</span></a>
+
+                </div>
+
+                <div id="help" class="p-2 bg-muted border border-information rounded-bottom small collapse show">
+                    <p>
+                        Messages in an autoload weapon must include substitution terms to replace certain words
+                        such as your character's name, the autoload item, and the pronouns of your character and/
+                        or the target. Check the preview pane to see how the messaging appears. Below is a table
+                        of samples as they will appear.
+                    </p>
+                    <div class="alert alert-info">
+                        <div><strong>Targets</strong> Substitions beginning with V relate to the TARGET living.</div>
+                        <div><strong>Capitalization</strong> If you begin a sentence with a substitution word and need
+                            it
+                            capitalized, place a caret (&Hat;) before the substitution word.</div>
+                    </div>
+                    <div class="container">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Subtitution</th>
+                                    <th>Your perspective</th>
+                                    <th>Target's perspective</th>
+                                    <th>Room's perspective</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>SHORT</th>
+                                    <td>{{sub("SHORT", "self", true)}}</th>
+                                    <td>{{sub("SHORT", "target", true)}}</th>
+                                    <td>{{sub("SHORT", "room", true)}}</th>
+                                </tr>
+                                <tr>
+                                    <td>NAME / ^NAME</th>
+                                    <td>{{sub("NAME", "self", true)}} / {{sub("^NAME", "self", true)}}</th>
+                                    <td>{{sub("NAME", "target", true)}} / {{sub("^NAME", "target", true)}}</th>
+                                    <td>{{sub("NAME", "room", true)}} / {{sub("^NAME", "room", true)}}</th>
+                                </tr>
+                                <tr>
+                                    <td>VNAME / ^VNAME</th>
+                                    <td>{{sub("VNAME", "self", true)}} / {{sub("^VNAME", "self", true)}}</th>
+                                    <td>{{sub("VNAME", "target", true)}} / {{sub("^VNAME", "target", true)}}</th>
+                                    <td>{{sub("VNAME", "room", true)}} / {{sub("^VNAME", "room", true)}}</th>
+                                </tr>
+                                <tr>
+                                    <td>POSS / ^POSS</th>
+                                    <td>{{sub("POSS", "self", true)}} / {{sub("^POSS", "self", true)}}</th>
+                                    <td>{{sub("POSS", "target", true)}} / {{sub("^POSS", "target", true)}}</th>
+                                    <td>{{sub("POSS", "room", true)}} / {{sub("^POSS", "room", true)}}</th>
+                                </tr>
+                                <tr>
+                                    <td>VPOSS / ^VPOSS</th>
+                                    <td>{{sub("VPOSS", "self", true)}} / {{sub("^VPOSS", "self", true)}}</th>
+                                    <td>{{sub("VPOSS", "target", true)}} / {{sub("^VPOSS", "target", true)}}</th>
+                                    <td>{{sub("VPOSS", "room", true)}} / {{sub("^VPOSS", "room", true)}}</th>
+                                </tr>
+                                <tr>
+                                    <td>SUB / ^SUB</th>
+                                    <td>{{sub("SUB", "self", true)}} / {{sub("^SUB", "self", true)}}</th>
+                                    <td>{{sub("SUB", "target", true)}} / {{sub("^SUB", "target", true)}}</th>
+                                    <td>{{sub("SUB", "room", true)}} / {{sub("^SUB", "room", true)}}</th>
+                                </tr>
+                                <tr>
+                                    <td>VSUB / ^VSUB</th>
+                                    <td>{{sub("VSUB", "self", true)}} / {{sub("^VSUB", "self", true)}}</th>
+                                    <td>{{sub("VSUB", "target", true)}} / {{sub("^VSUB", "target", true)}}</th>
+                                    <td>{{sub("VSUB", "room", true)}} / {{sub("^VSUB", "room", true)}}</th>
+                                </tr>
+                                <tr>
+                                    <td>OBJ / ^OBJ</th>
+                                    <td>{{sub("OBJ", "self", true)}} / {{sub("^OBJ", "self", true)}}</th>
+                                    <td>{{sub("OBJ", "target", true)}} / {{sub("^OBJ", "target", true)}}</th>
+                                    <td>{{sub("OBJ", "room", true)}} / {{sub("^OBJ", "room", true)}}</th>
+                                </tr>
+                                <tr>
+                                    <td>VOBJ / ^VOBJ</th>
+                                    <td>{{sub("VOBJ", "self", true)}} / {{sub("^VOBJ", "self", true)}}</th>
+                                    <td>{{sub("VOBJ", "target", true)}} / {{sub("^VOBJ", "target", true)}}</th>
+                                    <td>{{sub("VOBJ", "room", true)}} / {{sub("^VOBJ", "room", true)}}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-7 col text-monospace small shadow p-2 mb-2 h-50" style="display:none;">

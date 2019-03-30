@@ -1,7 +1,7 @@
 const substituteMessage = (mess, audience, targetted, short, character, target = { name: "Teleifegorra", gender: "female" }) => {
     const capitalize = (lc) => {
         if(lc === null || lc === undefined || !lc.length) return "";
-        lc.charAt(0).toUpperCase() + lc.slice(1);
+        return lc.charAt(0).toUpperCase() + lc.slice(1);
     };
 
     const myGenderData = findGenderInformation(character.gender) || findGenderInformation("male");
@@ -11,7 +11,7 @@ const substituteMessage = (mess, audience, targetted, short, character, target =
 
     switch (audience) {
         case "self":
-            if (targetted) {
+            if (targetted === true) {
                 mess = mess.replace(/\^VNAME/g, target.name);
                 mess = mess.replace(/\^VPOSS/g, capitalize(targetGenderData.poss));
                 mess = mess.replace(/\^VOBJ/g,  capitalize(targetGenderData.obj));
@@ -34,7 +34,7 @@ const substituteMessage = (mess, audience, targetted, short, character, target =
             mess = mess.replace(/POSS/g, "your");
             break;
         case "target":
-            if (targetted) {
+            if (targetted === true) {
                 mess = mess.replace(/\^VNAME/g, "You");
                 mess = mess.replace(/\^VSUB/g,  "You");
                 mess = mess.replace(/\^VOBJ/g,  "You");
@@ -57,7 +57,7 @@ const substituteMessage = (mess, audience, targetted, short, character, target =
             mess = mess.replace(/POSS/g, myGenderData.poss);
             break;
         case "room":
-            if (targetted) {
+            if (targetted === true) {
                 mess = mess.replace(/\^VNAME/g, target.name);
                 mess = mess.replace(/\^VPOSS/g, capitalize(targetGenderData.poss));
                 mess = mess.replace(/\^VOBJ/g,  capitalize(targetGenderData.obj));
@@ -80,6 +80,6 @@ const substituteMessage = (mess, audience, targetted, short, character, target =
             mess = mess.replace(/POSS/g, myGenderData.poss);
             break;
     }
-
+console.log(mess);
     return mess;
 };

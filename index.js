@@ -12,6 +12,10 @@ app.controller('c', ($scope, $sce) => {
         long: ""
     };
 
+    $scope.sub = (subby, aud, targetted) => {
+        return substituteMessage(subby, aud, targetted, $scope.item.short.text, $scope.item.character);
+    };
+
     $scope.remaining = (tab) => {
         let cnt = 0;
 
