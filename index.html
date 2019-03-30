@@ -38,6 +38,9 @@
                         ng-if="item.category==='spam'">Spam
                         <span ng-if="remaining('spam')" class="badge badge-danger">{{remaining("spam")}}</span>
                     </a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="modal" href="#help">
+                        Help
+                    </a></li>
             </ul>
             <!-- Tab Panes -->
             <div class="tab-content">
@@ -281,26 +284,31 @@
                 </div>
             </div>
             <div>
-                <div class="bg-info rounded-top text-white p-1 mt-3 text-small p-2">
-                    <span>Messages Help</span>
-                    <a data-toggle="collapse" class="float-right" href="#help"><span class="text-light">(&quest;)</span></a>
-
+                <div class="col text-monospace small shadow p-2 mb-2 pre-scrollable">
+                    {{updateItemInformation()}}
                 </div>
-
-                <div id="help" class="p-2 bg-muted border border-information rounded-bottom small collapse show">
-                    <p>
-                        Messages in an autoload weapon must include substitution terms to replace certain words
-                        such as your character's name, the autoload item, and the pronouns of your character and/
-                        or the target. Check the preview pane to see how the messaging appears. Below is a table
-                        of samples as they will appear.
-                    </p>
-                    <div class="alert alert-info">
-                        <div><strong>Targets</strong> Substitions beginning with V relate to the TARGET living.</div>
-                        <div><strong>Capitalization</strong> If you begin a sentence with a substitution word and need
-                            it
-                            capitalized, place a caret (&Hat;) before the substitution word.</div>
+            </div>
+        </div>
+        <div id="help" class="modal fade p-3 bg-muted border border-information rounded-bottom small">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="model-header">
+                        <h4 class="modal-title">Messages Help</h4>
                     </div>
-                    <div class="container">
+                    <div class="modal-body">
+                        <p>
+                            Messages in an autoload weapon must include substitution terms to replace certain words
+                            such as your character's name, the autoload item, and the pronouns of your character and/
+                            or the target. Check the preview pane to see how the messaging appears. Below is a table
+                            of samples as they will appear.
+                        </p>
+                        <div class="alert alert-info">
+                            <div><strong>Targets</strong> Substitions beginning with V relate to the TARGET living.
+                            </div>
+                            <div><strong>Capitalization</strong> If you begin a sentence with a substitution word and
+                                need it capitalized, place a caret (&Hat;) before the substitution word.</div>
+                        </div>
+                        <p>If any of the values in the table below say <em>null</em>, continue filling out the <strong>Basic</strong> tab and the <strong>Short</strong> tab.</p>
                         <table class="table table-sm">
                             <thead>
                                 <tr>
@@ -368,14 +376,16 @@
                             </tbody>
                         </table>
                     </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-7 col text-monospace small shadow p-2 mb-2 h-50" style="display:none;">
-                <pre class="pre bg-dark text-white ">{{updateItemInformation()}}</pre>
             </div>
         </div>
     </div>
     <script src="defaults.js"></script>
+    <script src="storage.js"></script>
     <script src="genders.js"></script>
     <script src="colours.js"></script>
     <script src="categories.js"></script>

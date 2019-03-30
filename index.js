@@ -70,8 +70,9 @@ app.controller('c', ($scope, $sce) => {
         const maxLineLength = 80;
         $scope.item.identifiers = $scope.temp.identifiers ? $scope.temp.identifiers.split(",") : null;
         $scope.item.long.text = wrapify($scope.temp.long);
-
-        return JSON.stringify($scope.item, null, 80);
+        localStorage.setItem("autoload-clothing", JSON.stringify($scope.item));
+        //return JSON.stringify($scope.item, null, 80);
+        return JSON.stringify($scope.item);
     };
     $scope.preview = () => {
         let result = "", temp = "";
