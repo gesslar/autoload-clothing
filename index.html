@@ -38,9 +38,6 @@
                         ng-if="item.category==='spam'">Spam
                         <span ng-if="remaining('spam')" class="badge badge-danger">{{remaining("spam")}}</span>
                     </a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="modal" href="#help">
-                        Help
-                    </a></li>
             </ul>
             <!-- Tab Panes -->
             <div class="tab-content">
@@ -140,8 +137,11 @@
                                 <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
                             </select>
                         </div>
-                        <div class="bg-primary rounded-top text-white p-1 mt-3">
-                            <h4>Self</h4>
+                        <div class="bg-primary rounded-top text-white p-2 mt-3">
+                            <h4>Self
+                                <button type="button" class="text-info small float-right btn btn-light"
+                                    data-toggle="modal" data-target="#help">Help</button>
+                            </h4>
                         </div>
                         <div class="p-2 bg-light border border-primary rounded-bottom">
                             <div class="form-group">
@@ -153,7 +153,10 @@
                         </div>
 
                         <div class="bg-primary rounded-top text-white p-1 mt-3">
-                            <h4>Room</h4>
+                            <h4>Room
+                                <button type="button" class="text-info small float-right btn btn-light"
+                                    data-toggle="modal" data-target="#help">Help</button>
+                            </h4>
                         </div>
                         <div class="p-2 bg-light border border-primary rounded-bottom">
                             <div class="form-group">
@@ -180,7 +183,10 @@
                             </select>
                         </div>
                         <div class="bg-primary rounded-top text-white p-1 mt-3">
-                            <h4>Self</h4>
+                            <h4>Self
+                                <button type="button" class="text-info small float-right btn btn-light"
+                                    data-toggle="modal" data-target="#help">Help</button>
+                            </h4>
                         </div>
                         <div class="p-2 bg-light border border-primary rounded-bottom">
                             <div class="form-group">
@@ -192,7 +198,10 @@
                         </div>
 
                         <div class="bg-primary rounded-top text-white p-1 mt-3">
-                            <h4>Room</h4>
+                            <h4>Room
+                                <button type="button" class="text-info small float-right btn btn-light"
+                                    data-toggle="modal" data-target="#help">Help</button>
+                            </h4>
                         </div>
                         <div class="p-2 bg-light border border-primary rounded-bottom">
                             <div class="form-group">
@@ -251,7 +260,9 @@
                         </div>
                         <div class="tab-pane container fade" id="nav-spam-messages">
                             <div class="bg-primary rounded-top text-white p-1 mt-3">
-                                <h4>Spam messages</h4>
+                                <h4>Spam messages <button type="button"
+                                        class="text-info small float-right btn btn-light" data-toggle="modal"
+                                        data-target="#help">Help</button></h4>
                             </div>
                             <div class="p-2 bg-light border border-primary rounded-bottom">
                                 <div class="form-group">
@@ -308,7 +319,8 @@
                             <div><strong>Capitalization</strong> If you begin a sentence with a substitution word and
                                 need it capitalized, place a caret (&Hat;) before the substitution word.</div>
                         </div>
-                        <p>If any of the values in the table below say <em>null</em>, continue filling out the <strong>Basic</strong> tab and the <strong>Short</strong> tab.</p>
+                        <p>If any of the values in the table below say <em>null</em>, continue filling out the
+                            <strong>Basic</strong> tab and the <strong>Short</strong> tab.</p>
                         <table class="table table-sm">
                             <thead>
                                 <tr>
