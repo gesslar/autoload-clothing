@@ -1,24 +1,32 @@
-const colours = [
-    { colour: "white",        cssColour: "silver", },
-    { colour: "red",          cssColour: "maroon", },
-    { colour: "orange",       cssColour: "olive"   },
-    { colour: "green",        cssColour: "green"   },
-    { colour: "blue",         cssColour: "navy"    },
-    { colour: "cyan",         cssColour: "teal"    },
-    { colour: "magenta",      cssColour: "purple"  },
-    { colour: "yellow",       cssColour: "yellow"  },
-    { colour: "bold red",     cssColour: "red"     },
-    { colour: "bold green",   cssColour: "lime"    },
-    { colour: "bold blue",    cssColour: "blue"    },
-    { colour: "bold cyan",    cssColour: "aqua"    },
-    { colour: "bold magenta", cssColour: "fuschia" },
-    { colour: "bold black",   cssColour: "gray"    },
-    { colour: "bold white",   cssColour: "white"   },
-];
+const DEFAULT_COLOUR_CODE = "z07"
 
-const findCssColour = (selectedColour) => {
-    const result = colours.filter(
-        (data) => { return data.colour === selectedColour; }
-    );
-    return result.length ? result[0].cssColour : "silver";
-};
+function codeToHex(code) {
+    if(code === null) return codeToHex(DEFAULT_COLOUR_CODE)
+
+    const num = parseInt(code)
+    if(num === NaN) return codeToHex(DEFAULT_COLOUR_CODE)
+
+    if(num >= 0 && num <= 256) {
+        return `#${colourList[num][3]}`
+    }
+
+    const result = colourList.filter( elem => {
+        return elem[0] === code
+    })
+    
+    return result.length === 0 ? codeToHex(DEFAULT_COLOUR_CODE) : `#${result[0][3]}`
+}
+
+function codeToThresh(code) {
+
+    if(code === null) return DEFAULT_COLOUR_CODE
+
+    const num = parseInt(code)
+    if(num === NaN) return DEFAULT_COLOUR_CODE
+
+    if(num >= 0 && num <= 256) {
+        return colourList[num][0]
+    }
+
+    return DEFAULT_COLOUR_CODE
+}

@@ -7,11 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="index.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" defer></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js" defer></script>
+    <script src="defaults.js" defer></script>
+    <script src="storage.js" defer></script>
+    <script src="genders.js" defer></script>
+    <script src="categories.js" defer></script>
+    <script src="wrapify.js" defer></script>
+    <script src="messages.js" defer></script>
+    <script src="colourList.js" defer></script>
+    <script src="colours.js" defer></script>
+    <script src="index.js" defer></script>
 </head>
 
 <body style="padding:25px;" ng-app="app" ng-controller="c" ng-cloak>
@@ -80,6 +89,12 @@
                     <div class="bg-primary rounded-top text-white p-1 mt-3">
                         <h4>Short Information</h4>
                     </div>
+                    <div class="bg-primary rounded-top text-white p-2 mt-3">
+                        <h4>Self
+                            <button type="button" class="text-info small float-right btn btn-light"
+                                data-toggle="modal" data-target="#color-help">Help</button>
+                        </h4>
+                    </div>
                     <div class="p-2 bg-light border border-primary rounded-bottom">
                         <div class="form-group">
                             <label for="itemShort">Item short description<br /><small>40 characters or
@@ -89,11 +104,8 @@
                         </div>
                         <div class="form-group">
                             <label for="itemColour">Item colour</label>
-                            <select class="form-control bg-dark text-white text-monospace small" id="itemColour"
-                                ng-model="item.short.colour">
-                                <option disabled selected value>--- Select a Colour ---</option>
-                                <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
-                            </select>
+                            <input type="text" id="itemColour" placeholder="z07"
+                            class="form-control bg-dark text-white text-monospace" ng-model="item.short.colour">
                         </div>
                     </div>
                     <div class="bg-primary rounded-top text-white p-1 mt-3">
@@ -127,15 +139,15 @@
                 <div class="tab-pane container fade" id="nav-equip">
                     <div class="form-group">
                         <div class="bg-primary rounded-top text-white p-1 mt-3">
-                            <h4>Colour</h4>
+                            <h4>Colour
+                                <button type="button" class="text-info small float-right btn btn-light"
+                                data-toggle="modal" data-target="#color-help">Help</button>
+                            </h4>
                         </div>
                         <div class="p-2 bg-light border border-primary rounded-bottom">
                             <label for="equipColour">Equip colour</label>
-                            <select class="form-control bg-dark text-white text-monospace small" id="equipColour"
-                                ng-model="item.messages.equip.colour">
-                                <option disabled selected value>--- Select a Colour ---</option>
-                                <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
-                            </select>
+                            <input type="text" id="equipColour" placeholder="z07"
+                            class="form-control bg-dark text-white text-monospace" ng-model="item.messages.equip.colour">
                         </div>
                         <div class="bg-primary rounded-top text-white p-2 mt-3">
                             <h4>Self
@@ -172,15 +184,16 @@
                 <div class="tab-pane container fade" id="nav-unequip">
                     <div class="form-group">
                         <div class="bg-primary rounded-top text-white p-1 mt-3">
-                            <h4>Colour</h4>
+                            <h4>Colour
+                                <button type="button" class="text-info small float-right btn btn-light"
+                                data-toggle="modal" data-target="#color-help">Help</button>
+                            </h4>
                         </div>
                         <div class="p-2 bg-light border border-primary rounded-bottom">
                             <label for="unequipColour">Unequip colour</label>
-                            <select class="form-control bg-dark text-white text-monospace small" id="unequipColour"
-                                ng-model="item.messages.unequip.colour">
-                                <option disabled selected value>--- Select a Colour ---</option>
-                                <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
-                            </select>
+                            <input type="text" id="unequipColour" placeholder="z07"
+                            class="form-control bg-dark text-white text-monospace" ng-model="item.messages.unequip.colour">
+
                         </div>
                         <div class="bg-primary rounded-top text-white p-2 mt-3">
                             <h4>Self
@@ -229,7 +242,10 @@
                     <div class="tab-content">
                         <div class="tab-pane container active in" id="nav-spam-general">
                             <div class="bg-primary rounded-top text-white p-1 mt-3">
-                                <h4>General Spam Information</h4>
+                                <h4>General Spam Information
+                                    <button type="button" class="text-info small float-right btn btn-light"
+                                    data-toggle="modal" data-target="#color-help">Help</button>
+                                </h4>
                             </div>
                             <div class="p-2 bg-light border border-primary rounded-bottom">
                                 <div class="form-group">
@@ -240,11 +256,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="spamColour">Spam colour</label>
-                                    <select class="form-control bg-dark text-white text-monospace small"
-                                        ng-model="item.messages.spam.colour" id="spamColour">
-                                        <option disabled selected value>--- Select a Colour ---</option>
-                                        <option ng-repeat="c in colours" value="{{c.colour}}">{{c.colour}}</option>
-                                    </select>
+                                    <input type="text" id="spamColour" placeholder="z07"
+                                    class="form-control bg-dark text-white text-monospace" ng-model="item.messages.spam.colour">
                                 </div>
                                 <div class="custom-control custom-checkbox">
 
@@ -395,15 +408,28 @@
                 </div>
             </div>
         </div>
+        <div id="color-help" class="modal small fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="model-header">
+                        <h4 class="modal-title">Colour Help</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            Pick any colour code from screenshot below.
+                        </p>
+                        <div style="text-align: center;">
+                            <img src="colour_list.png" />
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>        
     </div>
-    <script src="defaults.js"></script>
-    <script src="storage.js"></script>
-    <script src="genders.js"></script>
-    <script src="colours.js"></script>
-    <script src="categories.js"></script>
-    <script src="wrapify.js"></script>
-    <script src="messages.js"></script>
-    <script src="index.js"></script>
     <div class="fixed-bottom bg-dark text-center border-top border-info centre-button" style="height: 75px">
         <button type="button" class="btn btn-info center-block"
             onclick="javascript:window.open('https://github.com/gesslar/autoload-clothing', '_blank');">

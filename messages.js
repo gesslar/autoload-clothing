@@ -80,6 +80,5 @@ const substituteMessage = (mess, audience, targetted, short, character, target =
             mess = mess.replace(/POSS/g, myGenderData.poss);
             break;
     }
-console.log(mess);
     return mess;
 };

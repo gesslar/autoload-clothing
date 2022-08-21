@@ -3,7 +3,6 @@ app.controller('c', ($scope, $sce) => {
     $scope.item = defaultData;
     $scope.genders = genders;
     $scope.categories = categories;
-    $scope.colours = colours;
     $scope.options = {
         targettable: false
     };
@@ -76,7 +75,7 @@ app.controller('c', ($scope, $sce) => {
     };
     $scope.preview = () => {
         let result = "", temp = "";
-        // const id = $scope.item.identifiers.length > 0 ? ($scope.item.itentifiers[0].length > 0 ? $scope.item.identifiers[0] : "clothing") : "clothing";
+        // const id = $scope.item.identifiers.length > 0 ? ($scope.item.identifiers[0].length > 0 ? $scope.item.identifiers[0] : "clothing") : "clothing";
 
 
         result += `                   <span style="color: yellow;">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>\n`;
@@ -88,7 +87,7 @@ app.controller('c', ($scope, $sce) => {
         result += "<div><u>Short Description</u></div>";
         if ($scope.item.short.text) {
             const shortDescription = $scope.item.short.text;
-            const colour = findCssColour($scope.item.short.colour);
+            const colour = codeToHex($scope.item.short.colour);
             result += `<div style="color: ${colour};">${shortDescription}</div>`;
         } else result += "\n";
 
@@ -103,12 +102,12 @@ app.controller('c', ($scope, $sce) => {
         // EQUIP
         result += "<div><u>Equip Messages</u></div>";
         if ($scope.item.messages.equip.self.text) {
-            const colour = findCssColour($scope.item.messages.equip.colour);
+            const colour = codeToHex($scope.item.messages.equip.colour);
             const equipSelfMessage = iwrapify(substituteMessage($scope.item.messages.equip.self.text, "self", false, $scope.item.short.text, $scope.item.character));
             result += `<em>Self:</em><br /><div style="color: ${colour}">${equipSelfMessage}</div>`;
         }
         if ($scope.item.messages.equip.room.text) {
-            const colour = findCssColour($scope.item.messages.equip.colour);
+            const colour = codeToHex($scope.item.messages.equip.colour);
             const equipRoomMessage = iwrapify(substituteMessage($scope.item.messages.equip.room.text, "room", false, $scope.item.short.text, $scope.item.character));
             result += `<div><em>Room:</em></div><div style="color: ${colour}">${equipRoomMessage}</div>`;
         }
@@ -116,12 +115,12 @@ app.controller('c', ($scope, $sce) => {
         // UNEQUIP
         result += "\n<div><u>Unequip Messages</u></div>";
         if ($scope.item.messages.unequip.self.text) {
-            const colour = findCssColour($scope.item.messages.unequip.colour);
+            const colour = codeToHex($scope.item.messages.unequip.colour);
             const unequipSelfMessage = iwrapify(substituteMessage($scope.item.messages.unequip.self.text, "self", false, $scope.item.short.text, $scope.item.character));
             result += `<div><em>Self:</em></div><div style="color: ${colour}">${unequipSelfMessage}</div>`;
         }
         if ($scope.item.messages.unequip.room.text) {
-            const colour = findCssColour($scope.item.messages.unequip.colour);
+            const colour = codeToHex($scope.item.messages.unequip.colour);
             const unequipRoomMessage = iwrapify(substituteMessage($scope.item.messages.unequip.room.text, "room", false, $scope.item.short.text, $scope.item.character));
             result += `<div><em>Room:</em></div><div style="color: ${colour}">${unequipRoomMessage}</div>`;
         }
@@ -130,17 +129,17 @@ app.controller('c', ($scope, $sce) => {
         if ($scope.item.category === "spam") {
             result += "\n<div><u>Spam Messages</u></div>";
             if ($scope.item.messages.spam.self.text) {
-                const colour = findCssColour($scope.item.messages.spam.colour);
+                const colour = codeToHex($scope.item.messages.spam.colour);
                 const spamSelfMessage = iwrapify(substituteMessage($scope.item.messages.spam.self.text, "self", $scope.options.targettable, $scope.item.short.text, $scope.item.character));
                 result += `<div><em>Self</em></div><div style="color: ${colour}">${spamSelfMessage}</div>`;
             }
             if ($scope.item.messages.spam.target.text && $scope.options.targettable) {
-                const colour = findCssColour($scope.item.messages.spam.colour);
+                const colour = codeToHex($scope.item.messages.spam.colour);
                 const spamTargetMessage = iwrapify(substituteMessage($scope.item.messages.spam.target.text, "target", $scope.options.targettable, $scope.item.short.text, $scope.item.character));
                 result += `<div><em>Target</em></div><div style="color: ${colour}">${spamTargetMessage}</div>`;
             }
             if ($scope.item.messages.spam.room.text) {
-                const colour = findCssColour($scope.item.messages.spam.colour);
+                const colour = codeToHex($scope.item.messages.spam.colour);
                 const unequipRoomMessage = iwrapify(substituteMessage($scope.item.messages.spam.room.text, "room", $scope.options.targettable, $scope.item.short.text, $scope.item.character));
                 result += `<div><em>Room</em></div><div style="color: ${colour}">${unequipRoomMessage}</div>`;
             }
