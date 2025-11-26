@@ -21,8 +21,8 @@ const wrapify = (text = "", maxLineLength = 80, indent = 3) => {
     }
 
     return parseParagraphs;
-}; 
-// wrapify modified from stolen answer at 
+};
+// wrapify modified from stolen answer at
 //https://codereview.stackexchange.com/questions/171832/text-wrapping-function-in-javascript
 const wrapParagraph = (text, maxLineLength, indent) => {
     const firstLineLength = --maxLineLength - indent;
@@ -73,7 +73,7 @@ const iwrapify = (text = "", maxLineLength = 80, indent = 4) => {
     }
 
     return parseParagraphs;
-}; 
+};
 
 const iwrapParagraph = (text, maxLineLength, indent) => {
     const firstLineLength = --maxLineLength;
@@ -102,7 +102,7 @@ const iwrapParagraph = (text, maxLineLength, indent) => {
     }, "");
     let wlines = wrapped.split("\n"), w, szw;
     if(wlines.length === 1) return wrapped;
-    
+
     for(w = 1, szw = wlines.length; w < szw; w++) {
         wlines[w] = wlines[w].padStart(indent);
     }

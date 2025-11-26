@@ -2,440 +2,436 @@
 <html lang="en">
 
 <head>
-    <title>Autoload Clothing Template Generator</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="index.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
-    <script src="defaults.js" defer></script>
-    <script src="storage.js" defer></script>
-    <script src="genders.js" defer></script>
-    <script src="categories.js" defer></script>
-    <script src="wrapify.js" defer></script>
-    <script src="messages.js" defer></script>
-    <script src="colourList.js" defer></script>
-    <script src="colours.js" defer></script>
-    <script src="index.js" defer></script>
+  <title>Autoload Clothing Template Generator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+  <script src="defaults.js" defer></script>
+  <script src="storage.js" defer></script>
+  <script src="genders.js" defer></script>
+  <script src="categories.js" defer></script>
+  <script src="wrapify.js" defer></script>
+  <script src="messages.js" defer></script>
+  <script src="colourList.js" defer></script>
+  <script src="colours.js" defer></script>
+  <script src="index.js" defer></script>
 </head>
 
 <body style="padding:25px;" ng-app="app" ng-controller="c" ng-cloak>
-    <div class="container-fluid row">
-        <form class="container col-lg-5 col">
-            <!-- Navigation Tabs -->
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#nav-basic">Basic
-                        <span ng-if="remaining('basic')" class="badge badge-danger">{{remaining("basic")}}</span>
-                    </a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-short">Short
-                        <span ng-if="remaining('short')" class="badge badge-danger">{{remaining("short")}}</span>
-                    </a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-long">Long
-                        <span ng-if="remaining('long')" class="badge badge-danger">{{remaining("long")}}</span>
-                    </a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-equip">Equip
-                        <span ng-if="remaining('equip')" class="badge badge-danger">{{remaining("equip")}}</span>
-                    </a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-unequip">Unequip
-                        <span ng-if="remaining('unequip')" class="badge badge-danger">{{remaining("unequip")}}</span>
-                    </a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam"
-                        ng-if="item.category==='spam'">Spam
-                        <span ng-if="remaining('spam')" class="badge badge-danger">{{remaining("spam")}}</span>
-                    </a></li>
-            </ul>
-            <!-- Tab Panes -->
-            <div class="tab-content">
-                <!-- BASIC INFORMATION -->
-                <div class="tab-pane active container in" id="nav-basic">
-                    <div class="bg-primary rounded-top text-white p-1 mt-3">
-                        <h4>Character Information</h4>
-                    </div>
-                    <div class="p-2 bg-light border border-primary rounded-bottom">
-                        <div class="form-group">
-                            <label for="characterName" aria-label="12 characters or fewer">Character name</label>
-                            <input type="text" id="characterName" placeholder="Foo"
-                                class="form-control bg-dark text-white text-monospace" ng-model="item.character.name">
-                        </div>
-                        <div class="form-group">
-                            <label for="characterGender">Character gender</label>
-                            <select class="form-control bg-dark text-white text-monospace small" id="characterGender"
-                                ng-model="item.character.gender">
-                                <option disabled selected value>--- Select a Gender ---</option>
-                                <option ng-repeat="g in genders" value="{{g.gender}}">{{g.gender}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="bg-primary rounded-top text-white p-1 mt-3">
-                        <h4>Category</h4>
-                    </div>
-                    <div class="p-2 bg-light border border-primary rounded-bottom">
-                        <div class="form-group">
-                            <label for="itemCategory">Item category</label>
-                            <select class="form-control bg-dark text-white text-monospace small" id="itemCategory"
-                                ng-model="item.category">
-                                <option disabled selected value>--- Select a Category ---</option>
-                                <option ng-repeat="c in categories" value="{{c.category}}">{{c.text}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <!-- SHORT DESCRIPTION AND IDENTIFIERS -->
-                <div class="tab-pane container fade" id="nav-short">
-                    <div class="bg-primary rounded-top text-white p-1 mt-3">
-                        <h4>Short Information</h4>
-                    </div>
-                    <div class="bg-primary rounded-top text-white p-2 mt-3">
-                        <h4>Self
-                            <button type="button" class="text-info small float-right btn btn-light"
-                                data-toggle="modal" data-target="#color-help">Help</button>
-                        </h4>
-                    </div>
-                    <div class="p-2 bg-light border border-primary rounded-bottom">
-                        <div class="form-group">
-                            <label for="itemShort">Item short description<br /><small>40 characters or
-                                    fewer</small></label>
-                            <input type="text" id="itemShort" placeholder="Holy Hand Grenade"
-                                class="form-control bg-dark text-white text-monospace" ng-model="item.short.text">
-                        </div>
-                        <div class="form-group">
-                            <label for="itemColour">Item colour</label>
-                            <input type="text" id="itemColour" placeholder="z07"
-                            class="form-control bg-dark text-white text-monospace" ng-model="item.short.colour">
-                        </div>
-                    </div>
-                    <div class="bg-primary rounded-top text-white p-1 mt-3">
-                        <h4>Identifiers</h4>
-                    </div>
-                    <div class="p-2 bg-light border border-primary rounded-bottom">
-                        <div class="form-group">
-                            <label for="itemIdentifiers">Identifier<br /><small>Comma-separated list of words used to
-                                    directly interact with item. Case sensitive.</small></label>
-                            <input type="text" id="itemIdentifiers"
-                                placeholder="Holy Hand Grenade,holy hand grenade,hand grenade,grenade"
-                                class="form-control bg-dark text-white text-monospace" ng-model="temp.identifiers">
-                        </div>
-                    </div>
-                </div>
-                <!-- LONG DESCRIPTION -->
-                <div class="tab-pane container fade" id="nav-long">
-                    <div class="bg-primary rounded-top text-white p-1 mt-3">
-                        <h4>Long Information</h4>
-                    </div>
-                    <div class="p-2 bg-light border border-primary rounded-bottom">
-                        <div class="form-group">
-                            <label for="itemLong">Long description<br /><small>800 characters or fewer, including
-                                    spaces</small></label>
-                            <textarea rows="10" class="form-control bg-dark text-white text-monospace small"
-                                id="itemLong" ng-model="temp.long"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <!-- EQUIP MESSAGES -->
-                <div class="tab-pane container fade" id="nav-equip">
-                    <div class="form-group">
-                        <div class="bg-primary rounded-top text-white p-1 mt-3">
-                            <h4>Colour
-                                <button type="button" class="text-info small float-right btn btn-light"
-                                data-toggle="modal" data-target="#color-help">Help</button>
-                            </h4>
-                        </div>
-                        <div class="p-2 bg-light border border-primary rounded-bottom">
-                            <label for="equipColour">Equip colour</label>
-                            <input type="text" id="equipColour" placeholder="z07"
-                            class="form-control bg-dark text-white text-monospace" ng-model="item.messages.equip.colour">
-                        </div>
-                        <div class="bg-primary rounded-top text-white p-2 mt-3">
-                            <h4>Self
-                                <button type="button" class="text-info small float-right btn btn-light"
-                                    data-toggle="modal" data-target="#help">Help</button>
-                            </h4>
-                        </div>
-                        <div class="p-2 bg-light border border-primary rounded-bottom">
-                            <div class="form-group">
-                                <label for="equipMessageSelf">Self equip message<br /><small>250 characters or fewer,
-                                        including spaces</small></label>
-                                <textarea rows="3" class="form-control bg-dark text-white text-monospace small"
-                                    id="equipMessageSelf" ng-model="item.messages.equip.self.text"></textarea>
-                            </div>
-                        </div>
+  <div class="container-fluid row">
+    <form class="container col-lg-5 col">
+      <!-- Navigation Tabs -->
+      <ul class="nav nav-tabs">
+        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#nav-basic">Basic
+            <span ng-if="remaining('basic')" class="badge badge-danger">{{remaining("basic")}}</span>
+          </a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-short">Short
+            <span ng-if="remaining('short')" class="badge badge-danger">{{remaining("short")}}</span>
+          </a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-long">Long
+            <span ng-if="remaining('long')" class="badge badge-danger">{{remaining("long")}}</span>
+          </a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-equip">Equip
+            <span ng-if="remaining('equip')" class="badge badge-danger">{{remaining("equip")}}</span>
+          </a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-unequip">Unequip
+            <span ng-if="remaining('unequip')" class="badge badge-danger">{{remaining("unequip")}}</span>
+          </a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam" ng-if="item.category==='spam'">Spam
+            <span ng-if="remaining('spam')" class="badge badge-danger">{{remaining("spam")}}</span>
+          </a></li>
+      </ul>
+      <!-- Tab Panes -->
+      <div class="tab-content">
+        <!-- BASIC INFORMATION -->
+        <div class="tab-pane active container in" id="nav-basic">
+          <div class="bg-primary rounded-top text-white p-1 mt-3">
+            <h4>Character Information</h4>
+          </div>
+          <div class="p-2 bg-light border border-primary rounded-bottom">
+            <div class="form-group">
+              <label for="characterName" aria-label="12 characters or fewer">Character name</label>
+              <input type="text" id="characterName" placeholder="Foo"
+                class="form-control bg-dark text-white text-monospace" ng-model="item.character.name">
+            </div>
+            <div class="form-group">
+              <label for="characterGender">Character gender</label>
+              <select class="form-control bg-dark text-white text-monospace small" id="characterGender"
+                ng-model="item.character.gender">
+                <option disabled selected value>--- Select a Gender ---</option>
+                <option ng-repeat="g in genders" value="{{g.gender}}">{{g.gender}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="bg-primary rounded-top text-white p-1 mt-3">
+            <h4>Category</h4>
+          </div>
+          <div class="p-2 bg-light border border-primary rounded-bottom">
+            <div class="form-group">
+              <label for="itemCategory">Item category</label>
+              <select class="form-control bg-dark text-white text-monospace small" id="itemCategory"
+                ng-model="item.category">
+                <option disabled selected value>--- Select a Category ---</option>
+                <option ng-repeat="c in categories" value="{{c.category}}">{{c.text}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- SHORT DESCRIPTION AND IDENTIFIERS -->
+        <div class="tab-pane container fade" id="nav-short">
+          <div class="bg-primary rounded-top text-white p-1 mt-3">
+            <h4>Short Information</h4>
+          </div>
+          <div class="bg-primary rounded-top text-white p-2 mt-3">
+            <h4>Self
+              <button type="button" class="text-info small float-right btn btn-light" data-toggle="modal"
+                data-target="#color-help">Help</button>
+            </h4>
+          </div>
+          <div class="p-2 bg-light border border-primary rounded-bottom">
+            <div class="form-group">
+              <label for="itemShort">Item short description<br /><small>40 characters or
+                  fewer</small></label>
+              <input type="text" id="itemShort" placeholder="Holy Hand Grenade"
+                class="form-control bg-dark text-white text-monospace" ng-model="item.short.text">
+            </div>
+            <div class="form-group">
+              <label for="itemColour">Item colour</label>
+              <input type="text" id="itemColour" placeholder="z07"
+                class="form-control bg-dark text-white text-monospace" ng-model="item.short.colour">
+            </div>
+          </div>
+          <div class="bg-primary rounded-top text-white p-1 mt-3">
+            <h4>Identifiers</h4>
+          </div>
+          <div class="p-2 bg-light border border-primary rounded-bottom">
+            <div class="form-group">
+              <label for="itemIdentifiers">Identifier<br /><small>Comma-separated list of words used to
+                  directly interact with item. Case sensitive.</small></label>
+              <input type="text" id="itemIdentifiers"
+                placeholder="Holy Hand Grenade,holy hand grenade,hand grenade,grenade"
+                class="form-control bg-dark text-white text-monospace" ng-model="temp.identifiers">
+            </div>
+          </div>
+        </div>
+        <!-- LONG DESCRIPTION -->
+        <div class="tab-pane container fade" id="nav-long">
+          <div class="bg-primary rounded-top text-white p-1 mt-3">
+            <h4>Long Information</h4>
+          </div>
+          <div class="p-2 bg-light border border-primary rounded-bottom">
+            <div class="form-group">
+              <label for="itemLong">Long description<br /><small>800 characters or fewer, including
+                  spaces</small></label>
+              <textarea rows="10" class="form-control bg-dark text-white text-monospace small" id="itemLong"
+                ng-model="temp.long"></textarea>
+            </div>
+          </div>
+        </div>
+        <!-- EQUIP MESSAGES -->
+        <div class="tab-pane container fade" id="nav-equip">
+          <div class="form-group">
+            <div class="bg-primary rounded-top text-white p-1 mt-3">
+              <h4>Colour
+                <button type="button" class="text-info small float-right btn btn-light" data-toggle="modal"
+                  data-target="#color-help">Help</button>
+              </h4>
+            </div>
+            <div class="p-2 bg-light border border-primary rounded-bottom">
+              <label for="equipColour">Equip colour</label>
+              <input type="text" id="equipColour" placeholder="z07"
+                class="form-control bg-dark text-white text-monospace" ng-model="item.messages.equip.colour">
+            </div>
+            <div class="bg-primary rounded-top text-white p-2 mt-3">
+              <h4>Self
+                <button type="button" class="text-info small float-right btn btn-light" data-toggle="modal"
+                  data-target="#help">Help</button>
+              </h4>
+            </div>
+            <div class="p-2 bg-light border border-primary rounded-bottom">
+              <div class="form-group">
+                <label for="equipMessageSelf">Self equip message<br /><small>250 characters or fewer,
+                    including spaces</small></label>
+                <textarea rows="3" class="form-control bg-dark text-white text-monospace small" id="equipMessageSelf"
+                  ng-model="item.messages.equip.self.text"></textarea>
+              </div>
+            </div>
 
-                        <div class="bg-primary rounded-top text-white p-2 mt-3">
-                            <h4>Room
-                                <button type="button" class="text-info small float-right btn btn-light"
-                                    data-toggle="modal" data-target="#help">Help</button>
-                            </h4>
-                        </div>
-                        <div class="p-2 bg-light border border-primary rounded-bottom">
-                            <div class="form-group">
-                                <label for="equipMessageRoom">Room equip message<br /><small>250 characters or fewer,
-                                        including spaces</small></label>
-                                <textarea rows="3" class="form-control bg-dark text-white text-monospace small"
-                                    id="equipMessageRoom" ng-model="item.messages.equip.room.text"></textarea>
-                            </div>
-                        </div>
-                    </div>
+            <div class="bg-primary rounded-top text-white p-2 mt-3">
+              <h4>Room
+                <button type="button" class="text-info small float-right btn btn-light" data-toggle="modal"
+                  data-target="#help">Help</button>
+              </h4>
+            </div>
+            <div class="p-2 bg-light border border-primary rounded-bottom">
+              <div class="form-group">
+                <label for="equipMessageRoom">Room equip message<br /><small>250 characters or fewer,
+                    including spaces</small></label>
+                <textarea rows="3" class="form-control bg-dark text-white text-monospace small" id="equipMessageRoom"
+                  ng-model="item.messages.equip.room.text"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- UNEQUIP MESSAGES -->
+        <div class="tab-pane container fade" id="nav-unequip">
+          <div class="form-group">
+            <div class="bg-primary rounded-top text-white p-1 mt-3">
+              <h4>Colour
+                <button type="button" class="text-info small float-right btn btn-light" data-toggle="modal"
+                  data-target="#color-help">Help</button>
+              </h4>
+            </div>
+            <div class="p-2 bg-light border border-primary rounded-bottom">
+              <label for="unequipColour">Unequip colour</label>
+              <input type="text" id="unequipColour" placeholder="z07"
+                class="form-control bg-dark text-white text-monospace" ng-model="item.messages.unequip.colour">
+
+            </div>
+            <div class="bg-primary rounded-top text-white p-2 mt-3">
+              <h4>Self
+                <button type="button" class="text-info small float-right btn btn-light" data-toggle="modal"
+                  data-target="#help">Help</button>
+              </h4>
+            </div>
+            <div class="p-2 bg-light border border-primary rounded-bottom">
+              <div class="form-group">
+                <label for="unequipMessageSelf">Self unequip message<br /><small>250 characters or
+                    fewer, including spaces</small></label>
+                <textarea rows="3" class="form-control bg-dark text-white text-monospace small" id="unequipMessageSelf"
+                  ng-model="item.messages.unequip.self.text"></textarea>
+              </div>
+            </div>
+
+            <div class="bg-primary rounded-top text-white p-2 mt-3">
+              <h4>Room
+                <button type="button" class="text-info small float-right btn btn-light" data-toggle="modal"
+                  data-target="#help">Help</button>
+              </h4>
+            </div>
+            <div class="p-2 bg-light border border-primary rounded-bottom">
+              <div class="form-group">
+                <label for="unequipMessageRoom">Room unequip message<br /><small>250 characters or
+                    fewer, including spaces</small></label>
+                <textarea rows="3" class="form-control bg-dark text-white text-monospace small" id="unequipMessageRoom"
+                  ng-model="item.messages.unequip.room.text"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- SPAM MESSAGES -->
+        <div class="tab-pane container fade" id="nav-spam" ng-if="item.category=='spam'">
+          <ul class="nav nav-pills small">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#nav-spam-general">General
+                <span ng-if="remaining('spam-general')" class="badge badge-danger">{{remaining("spam-general")}}</span>
+              </a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam-messages">Messages
+                <span ng-if="remaining('spam-messages')"
+                  class="badge badge-danger">{{remaining("spam-messages")}}</span>
+              </a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane container active in" id="nav-spam-general">
+              <div class="bg-primary rounded-top text-white p-1 mt-3">
+                <h4>General Spam Information
+                  <button type="button" class="text-info small float-right btn btn-light" data-toggle="modal"
+                    data-target="#color-help">Help</button>
+                </h4>
+              </div>
+              <div class="p-2 bg-light border border-primary rounded-bottom">
+                <div class="form-group">
+                  <label for="spamCommand">Spam command</label>
+                  <input type="text" id="spamCommand" placeholder="toss grenade"
+                    class="form-control bg-dark text-white text-monospace" ng-model="item.messages.spam.command">
                 </div>
-                <!-- UNEQUIP MESSAGES -->
-                <div class="tab-pane container fade" id="nav-unequip">
-                    <div class="form-group">
-                        <div class="bg-primary rounded-top text-white p-1 mt-3">
-                            <h4>Colour
-                                <button type="button" class="text-info small float-right btn btn-light"
-                                data-toggle="modal" data-target="#color-help">Help</button>
-                            </h4>
-                        </div>
-                        <div class="p-2 bg-light border border-primary rounded-bottom">
-                            <label for="unequipColour">Unequip colour</label>
-                            <input type="text" id="unequipColour" placeholder="z07"
-                            class="form-control bg-dark text-white text-monospace" ng-model="item.messages.unequip.colour">
-
-                        </div>
-                        <div class="bg-primary rounded-top text-white p-2 mt-3">
-                            <h4>Self
-                                <button type="button" class="text-info small float-right btn btn-light"
-                                    data-toggle="modal" data-target="#help">Help</button>
-                            </h4>
-                        </div>
-                        <div class="p-2 bg-light border border-primary rounded-bottom">
-                            <div class="form-group">
-                                <label for="unequipMessageSelf">Self unequip message<br /><small>250 characters or
-                                        fewer, including spaces</small></label>
-                                <textarea rows="3" class="form-control bg-dark text-white text-monospace small"
-                                    id="unequipMessageSelf" ng-model="item.messages.unequip.self.text"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="bg-primary rounded-top text-white p-2 mt-3">
-                            <h4>Room
-                                <button type="button" class="text-info small float-right btn btn-light"
-                                    data-toggle="modal" data-target="#help">Help</button>
-                            </h4>
-                        </div>
-                        <div class="p-2 bg-light border border-primary rounded-bottom">
-                            <div class="form-group">
-                                <label for="unequipMessageRoom">Room unequip message<br /><small>250 characters or
-                                        fewer, including spaces</small></label>
-                                <textarea rows="3" class="form-control bg-dark text-white text-monospace small"
-                                    id="unequipMessageRoom" ng-model="item.messages.unequip.room.text"></textarea>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                  <label for="spamColour">Spam colour</label>
+                  <input type="text" id="spamColour" placeholder="z07"
+                    class="form-control bg-dark text-white text-monospace" ng-model="item.messages.spam.colour">
                 </div>
-                <!-- SPAM MESSAGES -->
-                <div class="tab-pane container fade" id="nav-spam" ng-if="item.category=='spam'">
-                    <ul class="nav nav-pills small">
-                        <li class="nav-item"><a class="nav-link active" data-toggle="tab"
-                                href="#nav-spam-general">General
-                                <span ng-if="remaining('spam-general')"
-                                    class="badge badge-danger">{{remaining("spam-general")}}</span>
-                            </a></li>
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#nav-spam-messages">Messages
-                                <span ng-if="remaining('spam-messages')"
-                                    class="badge badge-danger">{{remaining("spam-messages")}}</span>
-                            </a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane container active in" id="nav-spam-general">
-                            <div class="bg-primary rounded-top text-white p-1 mt-3">
-                                <h4>General Spam Information
-                                    <button type="button" class="text-info small float-right btn btn-light"
-                                    data-toggle="modal" data-target="#color-help">Help</button>
-                                </h4>
-                            </div>
-                            <div class="p-2 bg-light border border-primary rounded-bottom">
-                                <div class="form-group">
-                                    <label for="spamCommand">Spam command</label>
-                                    <input type="text" id="spamCommand" placeholder="toss grenade"
-                                        class="form-control bg-dark text-white text-monospace"
-                                        ng-model="item.messages.spam.command">
-                                </div>
-                                <div class="form-group">
-                                    <label for="spamColour">Spam colour</label>
-                                    <input type="text" id="spamColour" placeholder="z07"
-                                    class="form-control bg-dark text-white text-monospace" ng-model="item.messages.spam.colour">
-                                </div>
-                                <div class="custom-control custom-checkbox">
+                <div class="custom-control custom-checkbox">
 
-                                    <input type="checkbox" class="custom-control-input" id="optionTargettable"
-                                        ng-model="options.targettable">
-                                    <label class="custom-control-label" for="optionTargettable">Does this spam target
-                                        someone other than yourself?</label>
+                  <input type="checkbox" class="custom-control-input" id="optionTargettable"
+                    ng-model="options.targettable">
+                  <label class="custom-control-label" for="optionTargettable">Does this spam target
+                    someone other than yourself?</label>
 
-                                    <!-- <input type="checkbox" class="custom-control-checkbox" ng-model="options.targettable" id="optionTargettable">
+                  <!-- <input type="checkbox" class="custom-control-checkbox" ng-model="options.targettable" id="optionTargettable">
                                     <label class="custom-control-label" for="optionTargettable"></label> -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane container fade" id="nav-spam-messages">
-                            <div class="bg-primary rounded-top text-white p-2 mt-3">
-                                <h4>Spam messages <button type="button"
-                                        class="text-info small float-right btn btn-light" data-toggle="modal"
-                                        data-target="#help">Help</button></h4>
-                            </div>
-                            <div class="p-2 bg-light border border-primary rounded-bottom">
-                                <div class="form-group">
-                                    <label for="selfSpamMessage">Self spam message<br /><small>320 characters or fewer,
-                                            including spaces</small></label>
-                                    <textarea rows="4" class="form-control bg-dark text-white text-monospace small"
-                                        id="selfSpamMessage" ng-model="item.messages.spam.self.text"></textarea>
-                                </div>
-                                <div class="form-group" ng-if="options.targettable===true">
-                                    <label for="targetSpamMessage">Target spam message<br /><small>320 characters or
-                                            fewer, including spaces</small></label>
-                                    <textarea rows="4" class="form-control bg-dark text-white text-monospace small"
-                                        id="targetSpamMessage" ng-model="item.messages.spam.target.text"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="roomSpamMessage">Room spam message<br /><small>320 characters or fewer,
-                                            including spaces</small></label>
-                                    <textarea rows="4" class="form-control bg-dark text-white text-monospace small"
-                                        id="roomSpamMessage" ng-model="item.messages.spam.room.text"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+              </div>
             </div>
-        </form>
-        <div class="container h-100 d-none d-lg-block col col-lg-5">
-            <div class="col text-monospace small shadow p-2 mb-2 h-50">
-                <div ng-bind-html="preview()" style="white-space: pre-wrap" class="pre bg-dark text-light">
+            <div class="tab-pane container fade" id="nav-spam-messages">
+              <div class="bg-primary rounded-top text-white p-2 mt-3">
+                <h4>Spam messages <button type="button" class="text-info small float-right btn btn-light"
+                    data-toggle="modal" data-target="#help">Help</button></h4>
+              </div>
+              <div class="p-2 bg-light border border-primary rounded-bottom">
+                <div class="form-group">
+                  <label for="selfSpamMessage">Self spam message<br /><small>320 characters or fewer,
+                      including spaces</small></label>
+                  <textarea rows="4" class="form-control bg-dark text-white text-monospace small" id="selfSpamMessage"
+                    ng-model="item.messages.spam.self.text"></textarea>
                 </div>
-            </div>
-            <div>
-                <div class="col text-monospace small shadow p-2 mb-2 pre-scrollable">
-                    {{updateItemInformation()}}
+                <div class="form-group" ng-if="options.targettable===true">
+                  <label for="targetSpamMessage">Target spam message<br /><small>320 characters or
+                      fewer, including spaces</small></label>
+                  <textarea rows="4" class="form-control bg-dark text-white text-monospace small" id="targetSpamMessage"
+                    ng-model="item.messages.spam.target.text"></textarea>
                 </div>
+                <div class="form-group">
+                  <label for="roomSpamMessage">Room spam message<br /><small>320 characters or fewer,
+                      including spaces</small></label>
+                  <textarea rows="4" class="form-control bg-dark text-white text-monospace small" id="roomSpamMessage"
+                    ng-model="item.messages.spam.room.text"></textarea>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        <div id="help" class="modal small fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="model-header">
-                        <h4 class="modal-title">Messages Help</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Messages in an autoload clothing item must include substitution terms to replace certain words
-                            such as your character's name, the autoload item, and the pronouns of your character and/
-                            or the target. Check the preview pane to see how the messaging appears. Below is a table
-                            of samples as they will appear.
-                        </p>
-                        <div class="alert alert-info">
-                            <div><strong>Targets</strong> Substitutions beginning with V relate to the TARGET living.
-                            </div>
-                            <div><strong>Capitalization</strong> If you begin a sentence with a substitution word and
-                                need it capitalized, place a caret (&Hat;) before the substitution word.</div>
-                        </div>
-                        <p>If any of the values in the table below say <em>null</em>, continue filling out the
-                            <strong>Basic</strong> tab and the <strong>Short</strong> tab.</p>
-                        <table class="table table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Subtitution</th>
-                                    <th>Your perspective</th>
-                                    <th>Target's perspective</th>
-                                    <th>Room's perspective</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>SHORT</th>
-                                    <td>{{sub("SHORT", "self", true)}}</th>
-                                    <td>{{sub("SHORT", "target", true)}}</th>
-                                    <td>{{sub("SHORT", "room", true)}}</th>
-                                </tr>
-                                <tr>
-                                    <td>NAME / ^NAME</th>
-                                    <td>{{sub("NAME", "self", true)}} / {{sub("^NAME", "self", true)}}</th>
-                                    <td>{{sub("NAME", "target", true)}} / {{sub("^NAME", "target", true)}}</th>
-                                    <td>{{sub("NAME", "room", true)}} / {{sub("^NAME", "room", true)}}</th>
-                                </tr>
-                                <tr>
-                                    <td>VNAME / ^VNAME</th>
-                                    <td>{{sub("VNAME", "self", true)}} / {{sub("^VNAME", "self", true)}}</th>
-                                    <td>{{sub("VNAME", "target", true)}} / {{sub("^VNAME", "target", true)}}</th>
-                                    <td>{{sub("VNAME", "room", true)}} / {{sub("^VNAME", "room", true)}}</th>
-                                </tr>
-                                <tr>
-                                    <td>POSS / ^POSS</th>
-                                    <td>{{sub("POSS", "self", true)}} / {{sub("^POSS", "self", true)}}</th>
-                                    <td>{{sub("POSS", "target", true)}} / {{sub("^POSS", "target", true)}}</th>
-                                    <td>{{sub("POSS", "room", true)}} / {{sub("^POSS", "room", true)}}</th>
-                                </tr>
-                                <tr>
-                                    <td>VPOSS / ^VPOSS</th>
-                                    <td>{{sub("VPOSS", "self", true)}} / {{sub("^VPOSS", "self", true)}}</th>
-                                    <td>{{sub("VPOSS", "target", true)}} / {{sub("^VPOSS", "target", true)}}</th>
-                                    <td>{{sub("VPOSS", "room", true)}} / {{sub("^VPOSS", "room", true)}}</th>
-                                </tr>
-                                <tr>
-                                    <td>SUB / ^SUB</th>
-                                    <td>{{sub("SUB", "self", true)}} / {{sub("^SUB", "self", true)}}</th>
-                                    <td>{{sub("SUB", "target", true)}} / {{sub("^SUB", "target", true)}}</th>
-                                    <td>{{sub("SUB", "room", true)}} / {{sub("^SUB", "room", true)}}</th>
-                                </tr>
-                                <tr>
-                                    <td>VSUB / ^VSUB</th>
-                                    <td>{{sub("VSUB", "self", true)}} / {{sub("^VSUB", "self", true)}}</th>
-                                    <td>{{sub("VSUB", "target", true)}} / {{sub("^VSUB", "target", true)}}</th>
-                                    <td>{{sub("VSUB", "room", true)}} / {{sub("^VSUB", "room", true)}}</th>
-                                </tr>
-                                <tr>
-                                    <td>OBJ / ^OBJ</th>
-                                    <td>{{sub("OBJ", "self", true)}} / {{sub("^OBJ", "self", true)}}</th>
-                                    <td>{{sub("OBJ", "target", true)}} / {{sub("^OBJ", "target", true)}}</th>
-                                    <td>{{sub("OBJ", "room", true)}} / {{sub("^OBJ", "room", true)}}</th>
-                                </tr>
-                                <tr>
-                                    <td>VOBJ / ^VOBJ</th>
-                                    <td>{{sub("VOBJ", "self", true)}} / {{sub("^VOBJ", "self", true)}}</th>
-                                    <td>{{sub("VOBJ", "target", true)}} / {{sub("^VOBJ", "target", true)}}</th>
-                                    <td>{{sub("VOBJ", "room", true)}} / {{sub("^VOBJ", "room", true)}}</th>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </form>
+    <div class="container h-100 d-none d-lg-block col col-lg-5">
+      <div class="col text-monospace small shadow p-2 mb-2 h-50">
+        <div ng-bind-html="preview()" style="white-space: pre-wrap" class="pre bg-dark text-light">
         </div>
-        <div id="color-help" class="modal small fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="model-header">
-                        <h4 class="modal-title">Colour Help</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Pick any colour code from screenshot below.
-                        </p>
-                        <div style="text-align: center;">
-                            <img src="colour_list.png" />
-                        </div>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
+      </div>
+      <div>
+        <div class="col text-monospace small shadow p-2 mb-2 pre-scrollable">
+          {{updateItemInformation()}}
+        </div>
+      </div>
+    </div>
+    <div id="help" class="modal small fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="model-header">
+            <h4 class="modal-title">Messages Help</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              Messages in an autoload clothing item must include substitution terms to replace certain words
+              such as your character's name, the autoload item, and the pronouns of your character and/
+              or the target. Check the preview pane to see how the messaging appears. Below is a table
+              of samples as they will appear.
+            </p>
+            <div class="alert alert-info">
+              <div><strong>Targets</strong> Substitutions beginning with V relate to the TARGET living.
+              </div>
+              <div><strong>Capitalization</strong> If you begin a sentence with a substitution word and
+                need it capitalized, place a caret (&Hat;) before the substitution word.</div>
             </div>
-        </div>        
+            <p>If any of the values in the table below say <em>null</em>, continue filling out the
+              <strong>Basic</strong> tab and the <strong>Short</strong> tab.
+            </p>
+            <table class="table table-sm">
+              <thead>
+                <tr>
+                  <th>Subtitution</th>
+                  <th>Your perspective</th>
+                  <th>Target's perspective</th>
+                  <th>Room's perspective</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>SHORT</th>
+                  <td>{{sub("SHORT", "self", true)}}</th>
+                  <td>{{sub("SHORT", "target", true)}}</th>
+                  <td>{{sub("SHORT", "room", true)}}</th>
+                </tr>
+                <tr>
+                  <td>NAME / ^NAME</th>
+                  <td>{{sub("NAME", "self", true)}} / {{sub("^NAME", "self", true)}}</th>
+                  <td>{{sub("NAME", "target", true)}} / {{sub("^NAME", "target", true)}}</th>
+                  <td>{{sub("NAME", "room", true)}} / {{sub("^NAME", "room", true)}}</th>
+                </tr>
+                <tr>
+                  <td>VNAME / ^VNAME</th>
+                  <td>{{sub("VNAME", "self", true)}} / {{sub("^VNAME", "self", true)}}</th>
+                  <td>{{sub("VNAME", "target", true)}} / {{sub("^VNAME", "target", true)}}</th>
+                  <td>{{sub("VNAME", "room", true)}} / {{sub("^VNAME", "room", true)}}</th>
+                </tr>
+                <tr>
+                  <td>POSS / ^POSS</th>
+                  <td>{{sub("POSS", "self", true)}} / {{sub("^POSS", "self", true)}}</th>
+                  <td>{{sub("POSS", "target", true)}} / {{sub("^POSS", "target", true)}}</th>
+                  <td>{{sub("POSS", "room", true)}} / {{sub("^POSS", "room", true)}}</th>
+                </tr>
+                <tr>
+                  <td>VPOSS / ^VPOSS</th>
+                  <td>{{sub("VPOSS", "self", true)}} / {{sub("^VPOSS", "self", true)}}</th>
+                  <td>{{sub("VPOSS", "target", true)}} / {{sub("^VPOSS", "target", true)}}</th>
+                  <td>{{sub("VPOSS", "room", true)}} / {{sub("^VPOSS", "room", true)}}</th>
+                </tr>
+                <tr>
+                  <td>SUB / ^SUB</th>
+                  <td>{{sub("SUB", "self", true)}} / {{sub("^SUB", "self", true)}}</th>
+                  <td>{{sub("SUB", "target", true)}} / {{sub("^SUB", "target", true)}}</th>
+                  <td>{{sub("SUB", "room", true)}} / {{sub("^SUB", "room", true)}}</th>
+                </tr>
+                <tr>
+                  <td>VSUB / ^VSUB</th>
+                  <td>{{sub("VSUB", "self", true)}} / {{sub("^VSUB", "self", true)}}</th>
+                  <td>{{sub("VSUB", "target", true)}} / {{sub("^VSUB", "target", true)}}</th>
+                  <td>{{sub("VSUB", "room", true)}} / {{sub("^VSUB", "room", true)}}</th>
+                </tr>
+                <tr>
+                  <td>OBJ / ^OBJ</th>
+                  <td>{{sub("OBJ", "self", true)}} / {{sub("^OBJ", "self", true)}}</th>
+                  <td>{{sub("OBJ", "target", true)}} / {{sub("^OBJ", "target", true)}}</th>
+                  <td>{{sub("OBJ", "room", true)}} / {{sub("^OBJ", "room", true)}}</th>
+                </tr>
+                <tr>
+                  <td>VOBJ / ^VOBJ</th>
+                  <td>{{sub("VOBJ", "self", true)}} / {{sub("^VOBJ", "self", true)}}</th>
+                  <td>{{sub("VOBJ", "target", true)}} / {{sub("^VOBJ", "target", true)}}</th>
+                  <td>{{sub("VOBJ", "room", true)}} / {{sub("^VOBJ", "room", true)}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="fixed-bottom bg-dark text-center border-top border-info centre-button" style="height: 75px">
-        <button type="button" class="btn btn-info center-block"
-            onclick="javascript:window.open('https://github.com/gesslar/autoload-clothing', '_blank');">
-            Click here to visit this project on GitHub
-        </button>
+    <div id="color-help" class="modal small fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="model-header">
+            <h4 class="modal-title">Colour Help</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              Pick any colour code from screenshot below.
+            </p>
+            <div style="text-align: center;">
+              <img src="colour_list.png" />
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="fixed-bottom bg-dark text-center border-top border-info centre-button" style="height: 75px">
+    <button type="button" class="btn btn-info center-block"
+      onclick="javascript:window.open('https://github.com/gesslar/autoload-clothing', '_blank');">
+      Click here to visit this project on GitHub
+    </button>
+  </div>
 </body>
 
 </html>

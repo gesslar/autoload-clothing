@@ -13,7 +13,7 @@ function codeToHex(code) {
     const result = colourList.filter( elem => {
         return elem[0] === code
     })
-    
+
     return result.length === 0 ? codeToHex(DEFAULT_COLOUR_CODE) : `#${result[0][3]}`
 }
 
